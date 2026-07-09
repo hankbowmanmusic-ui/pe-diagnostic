@@ -1,666 +1,331 @@
+bash
+
+cat /home/claude/pe-diagnostic/index.html
+Output
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio Sales Excellence Diagnostic | Stage 7 Revenue Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #05080f;
-  --surface: #0d1117;
-  --surface2: #141a24;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.13);
-  --text: #e2e8f0;
-  --muted: #64748b;
-  --blue: #3b82f6;
-  --blue-dim: rgba(59,130,246,0.12);
-  --blue-glow: rgba(59,130,246,0.25);
-  --blue-dark: #1e40af;
-  --red: #ef4444;
-  --red-dim: rgba(239,68,68,0.1);
-  --orange: #f97316;
-  --orange-dim: rgba(249,115,22,0.1);
-  --green: #22c55e;
-  --green-dim: rgba(34,197,94,0.1);
-  --gold: #eab308;
-  --gold-dim: rgba(234,179,8,0.1);
-}
+:root{--bg:#0c0d10;--surface:#13141a;--surface2:#1a1c24;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e6e0;--muted:#8a8890;--amber:#d4a843;--amber-dim:rgba(212,168,67,0.12);--amber-glow:rgba(212,168,67,0.25);--red:#e05252;--red-dim:rgba(224,82,82,0.1);--orange:#d47843;--orange-dim:rgba(212,120,67,0.1);--green:#52a878;--green-dim:rgba(82,168,120,0.1)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-weight:400;min-height:100vh;font-size:16px;line-height:1.5}
 .shell{min-height:100vh;display:flex;flex-direction:column}
-
-/* TOPBAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(5,8,15,0.95);backdrop-filter:blur(16px);position:sticky;top:0;z-index:200}
-.topbar-logo{display:flex;align-items:center;gap:10px}
-.logo-mark{width:28px;height:28px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:white}
-.logo-text{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text)}
-.logo-text span{color:var(--blue)}
-.topbar-progress{display:flex;align-items:center;gap:5px}
-.tp-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all 0.3s}
-.tp-dot.done{background:var(--blue)}
-.tp-dot.active{background:var(--blue);box-shadow:0 0 8px var(--blue-glow);width:20px;border-radius:3px}
-.topbar-right{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
-
-/* PAGES */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid var(--border);background:rgba(12,13,16,0.95);position:sticky;top:0;z-index:200}
+.topbar-brand{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber)}
+.topbar-progress{display:flex;align-items:center;gap:6px}
+.tp-dot{width:7px;height:7px;border-radius:50%;background:var(--border2);transition:all 0.3s}
+.tp-dot.done{background:var(--amber)}
+.tp-dot.active{background:var(--amber);box-shadow:0 0 8px var(--amber-glow);width:20px;border-radius:3px}
+.topbar-right{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.08em}
 .page{display:none;flex:1;flex-direction:column}
 .page.active{display:flex}
-
-/* WELCOME */
-.welcome{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 40px;text-align:center;min-height:calc(100vh - 60px);position:relative;overflow:hidden}
-.welcome::before{content:'CREATE. WIN. GROW.';position:absolute;font-family:'Playfair Display',serif;font-size:clamp(60px,12vw,160px);font-weight:900;color:rgba(59,130,246,0.04);white-space:nowrap;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%)}
-.welcome-kicker{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--blue);margin-bottom:20px;border:1px solid var(--blue-dim);padding:6px 18px;position:relative}
-.welcome h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,68px);font-weight:900;line-height:0.95;letter-spacing:-0.02em;margin-bottom:20px;max-width:760px;position:relative}
-.welcome h1 em{font-style:italic;color:var(--blue)}
-.welcome-desc{font-size:14px;color:var(--muted);max-width:500px;line-height:1.75;margin-bottom:40px;position:relative}
-.framework-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:600px;width:100%;margin-bottom:40px;position:relative}
-.fw-cell{background:var(--surface);padding:20px 18px;text-align:left}
-.fw-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--blue);margin-bottom:6px;letter-spacing:0.1em}
-.fw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px}
-.fw-sub{font-size:11px;color:var(--muted);line-height:1.4}
-.start-btn{background:var(--blue);color:white;border:none;padding:16px 48px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all 0.2s;position:relative}
-.start-btn:hover{background:#2563eb;transform:translateY(-1px);box-shadow:0 8px 32px var(--blue-glow)}
-.time-note{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em}
-
-/* SECTION */
-.section-page{flex:1;max-width:760px;width:100%;margin:0 auto;padding:48px 40px 24px}
-.section-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px}
-.section-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);border:1px solid var(--blue-dim);padding:5px 12px}
-.section-lens{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
-.section-h{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;line-height:1.1;margin-bottom:8px}
-.section-h em{font-style:italic;color:var(--blue)}
-.section-sub{font-size:13px;color:var(--muted);line-height:1.65;max-width:520px;margin-bottom:28px}
-.industry-callout{background:var(--blue-dim);border:1px solid rgba(59,130,246,0.2);padding:12px 16px;margin-bottom:28px;display:flex;align-items:flex-start;gap:12px}
-.ic-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;margin-top:1px}
-.ic-text{font-size:12px;color:rgba(226,232,240,0.8);line-height:1.5}
-
-/* QUESTIONS */
-.q{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--blue);padding:22px 26px;margin-bottom:12px;transition:border-left-color 0.2s}
+.welcome{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:64px 40px;text-align:center}
+.welcome-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;border:1px solid var(--amber-dim);padding:7px 20px;display:inline-block}
+.welcome h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,80px);font-weight:900;line-height:0.95;letter-spacing:-0.02em;margin-bottom:24px;max-width:800px}
+.welcome h1 em{font-style:italic;color:var(--amber)}
+.welcome-desc{font-size:17px;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:44px}
+.fw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:640px;width:100%;margin-bottom:44px}
+.fw-cell{background:var(--surface);padding:22px 20px;text-align:left}
+.fw-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:8px;letter-spacing:0.12em}
+.fw-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:5px}
+.fw-sub{font-size:14px;color:var(--muted);line-height:1.4}
+.start-btn{background:var(--amber);color:var(--bg);border:none;padding:18px 52px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;font-weight:700;transition:all 0.2s}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--amber-glow)}
+.time-note{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.section-page{flex:1;max-width:780px;width:100%;margin:0 auto;padding:52px 40px 28px}
+.section-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber-dim);padding:6px 14px}
+.section-step{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.section-h{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.1;margin-bottom:10px}
+.section-h em{font-style:italic;color:var(--amber)}
+.section-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:28px}
+.callout{background:var(--amber-dim);border:1px solid rgba(212,168,67,0.22);padding:16px 20px;margin-bottom:28px;display:flex;gap:16px;align-items:flex-start}
+.callout-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.callout-text{font-size:15px;color:var(--text);line-height:1.65}
+.q{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--amber);padding:26px 30px;margin-bottom:14px;transition:border-left-color 0.2s}
 .q.answered{border-left-color:var(--green)}
-.q-id{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.q-text{font-size:14px;font-weight:600;line-height:1.4;margin-bottom:6px}
-.q-hint{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;padding-left:12px;border-left:2px solid var(--border2);font-style:italic}
-.q-benchmark{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);background:var(--blue-dim);padding:6px 12px;margin-bottom:14px;display:inline-block}
-.scale-ends{display:flex;justify-content:space-between;margin-bottom:7px}
-.scale-end{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
-.scale-row{display:flex;gap:5px}
-.s-btn{flex:1;height:42px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.15s}
-.s-btn:hover{border-color:var(--blue);color:var(--blue)}
-.s-btn.sel{background:var(--blue);color:white;border-color:var(--blue);font-weight:700}
-.q-select{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 40px 11px 16px;font-family:'Syne',sans-serif;font-size:13px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
-.q-select:focus{border-color:var(--blue)}
-.q-select option{background:var(--surface2)}
-.q-ta{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:13px 16px;font-family:'Syne',sans-serif;font-size:13px;line-height:1.6;resize:vertical;min-height:84px;outline:none}
-.q-ta:focus{border-color:var(--blue)}
-.q-ta::placeholder{color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{padding:7px 15px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer;transition:all 0.15s;user-select:none;letter-spacing:0.04em}
-.chip:hover{border-color:var(--blue);color:var(--text)}
-.chip.sel{background:var(--blue-dim);border-color:var(--blue);color:var(--blue)}
-.number-input-row{display:flex;align-items:center;gap:12px}
-.number-input{width:140px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 16px;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;outline:none;text-align:center}
-.number-input:focus{border-color:var(--blue)}
-.number-unit{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
-.bm-compare{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:8px}
-.bm-compare .bm-val{color:var(--blue)}
-
-/* INTAKE */
-.intake-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.intake-field{display:flex;flex-direction:column;gap:6px}
-.intake-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)}
-.intake-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 16px;font-family:'Syne',sans-serif;font-size:13px;outline:none}
-.intake-input:focus{border-color:var(--blue)}
-.intake-input::placeholder{color:var(--muted)}
-
-/* NAV */
-.nav-footer{border-top:1px solid var(--border);padding:18px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,8,15,0.9);backdrop-filter:blur(8px);position:sticky;bottom:0;z-index:100}
-.nav-completion{display:flex;align-items:center;gap:12px}
-.nav-bar{width:140px;height:2px;background:var(--border2)}
-.nav-bar-fill{height:100%;background:var(--blue);transition:width 0.4s ease}
-.nav-pct{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);min-width:34px}
-.nav-btns{display:flex;gap:10px}
-.nav-back{padding:10px 22px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.15s}
-.nav-back:hover{border-color:var(--text);color:var(--text)}
-.nav-next{padding:10px 32px;background:var(--blue);border:none;color:white;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all 0.2s}
-.nav-next:hover{background:#2563eb}
-.nav-next:disabled{opacity:0.3;cursor:not-allowed}
-.err-block{padding:12px 16px;background:var(--red-dim);border:1px solid rgba(239,68,68,0.2);border-left:2px solid var(--red);font-size:12px;color:var(--red);margin-top:12px;line-height:1.5}
-
-/* LOADING */
-.loading-page{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;text-align:center;min-height:calc(100vh - 60px)}
-.loading-ring{width:52px;height:52px;border:2px solid var(--border2);border-top-color:var(--blue);border-radius:50%;animation:spin 0.85s linear infinite;margin-bottom:28px}
+.q-id{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.q-text{font-size:17px;font-weight:600;line-height:1.4;margin-bottom:8px}
+.q-hint{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:16px;padding-left:14px;border-left:2px solid var(--border2);font-style:italic}
+.q-bm{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);background:var(--amber-dim);padding:8px 14px;margin-bottom:16px;display:inline-block;border:1px solid rgba(212,168,67,0.2)}
+.scale-ends{display:flex;justify-content:space-between;margin-bottom:8px}
+.scale-end{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.scale-row{display:flex;gap:6px}
+.s-btn{flex:1;height:50px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.15s}
+.s-btn:hover{border-color:var(--amber);color:var(--amber)}
+.s-btn.sel{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:700}
+select{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:14px 42px 14px 18px;font-family:'Syne',sans-serif;font-size:16px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a8890'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center}
+select:focus{border-color:var(--amber)}
+select option{background:var(--surface2)}
+textarea{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:16px 18px;font-family:'Syne',sans-serif;font-size:16px;line-height:1.65;resize:vertical;min-height:96px;outline:none}
+textarea:focus{border-color:var(--amber)}
+textarea::placeholder{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 18px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;transition:all 0.15s;user-select:none}
+.chip:hover{border-color:var(--amber);color:var(--text)}
+.chip.sel{background:var(--amber-dim);border-color:var(--amber);color:var(--amber)}
+.num-row{display:flex;align-items:center;gap:16px}
+.num-input{width:160px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:14px 18px;font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;outline:none;text-align:center}
+.num-input:focus{border-color:var(--amber)}
+.num-unit{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--muted)}
+.bm-live{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-top:10px;min-height:22px}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.if{display:flex;flex-direction:column;gap:7px}
+.il{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)}
+input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:13px 18px;font-family:'Syne',sans-serif;font-size:16px;outline:none}
+input[type=text]:focus{border-color:var(--amber)}
+input[type=text]::placeholder{color:var(--muted)}
+.nav-footer{border-top:1px solid var(--border);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,13,16,0.95);position:sticky;bottom:0;z-index:100}
+.nav-left{display:flex;align-items:center;gap:14px}
+.nav-bar{width:150px;height:2px;background:var(--border2)}
+.nav-fill{height:100%;background:var(--amber);transition:width 0.4s ease}
+.nav-pct{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);min-width:36px}
+.nav-btns{display:flex;gap:12px}
+.btn-back{padding:12px 24px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.15s}
+.btn-back:hover{border-color:var(--text);color:var(--text)}
+.btn-next{padding:12px 36px;background:var(--amber);border:none;color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:700;transition:opacity 0.2s}
+.btn-next:hover{opacity:0.88}
+.btn-next:disabled{opacity:0.3;cursor:not-allowed}
+.err{padding:14px 18px;background:var(--red-dim);border:1px solid rgba(224,82,82,0.2);border-left:2px solid var(--red);font-size:15px;color:var(--red);margin-top:14px}
+.loading-pg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;text-align:center}
+.ring{width:60px;height:60px;border:2px solid var(--border2);border-top-color:var(--amber);border-radius:50%;animation:spin 0.9s linear infinite;margin-bottom:32px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-.loading-phases{margin-top:36px;display:flex;flex-direction:column;gap:8px;max-width:360px;width:100%;text-align:left}
-.lp{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);opacity:0.3;transition:all 0.4s;letter-spacing:0.04em}
+.loading-lbl{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.phases{margin-top:40px;display:flex;flex-direction:column;gap:10px;max-width:380px;width:100%;text-align:left}
+.lp{display:flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);opacity:0.3;transition:all 0.4s}
 .lp.lit{opacity:1;color:var(--text)}
 .lp.done{opacity:1;color:var(--green)}
-.lp-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.3s}
-.lp.lit .lp-dot{background:var(--blue)}
+.lp-dot{width:7px;height:7px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background 0.3s}
+.lp.lit .lp-dot{background:var(--amber)}
 .lp.done .lp-dot{background:var(--green)}
-
-/* REPORT */
-.report-page{max-width:820px;width:100%;margin:0 auto;padding:44px 44px 80px}
-.report-header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border)}
-.report-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.report-logo-mark{width:24px;height:24px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;color:white}
-.report-logo-text{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
-.report-kicker{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.report-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,36px);font-weight:900;line-height:1.05;margin-bottom:8px}
-.report-meta-row{display:flex;gap:18px;flex-wrap:wrap}
-.report-meta-item{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
-.report-meta-item span{color:var(--text)}
-
-/* IRR BANNER */
-.irr-banner{background:linear-gradient(135deg,var(--blue-dark),#1e3a8a);border:1px solid rgba(59,130,246,0.3);padding:24px 28px;margin-bottom:24px}
-.irr-banner-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:10px}
-.irr-banner-headline{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;line-height:1.5;margin-bottom:10px;color:white}
-.irr-banner-ctx{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:18px}
-.irr-numbers{display:flex;gap:28px;flex-wrap:wrap}
-.irr-num{display:flex;flex-direction:column;gap:4px}
-.irr-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;color:white}
-.irr-val.gold{color:var(--gold)}
+.report-pg{max-width:840px;width:100%;margin:0 auto;padding:52px 44px 88px}
+.rpt-header{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.rpt-s7{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.s7m{background:var(--amber);color:var(--bg);padding:3px 9px;font-weight:700;font-size:12px}
+.rpt-kicker{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.rpt-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,42px);font-weight:900;line-height:1.05;margin-bottom:12px}
+.rpt-meta{display:flex;gap:20px;flex-wrap:wrap}
+.rpt-meta-item{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.rpt-meta-item span{color:var(--text)}
+.irr-banner{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);padding:26px 30px;margin-bottom:24px}
+.irr-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.irr-hl{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;line-height:1.5;margin-bottom:10px}
+.irr-ctx{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.irr-nums{display:flex;gap:36px;flex-wrap:wrap}
+.irr-num{display:flex;flex-direction:column;gap:5px}
+.irr-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;line-height:1}
+.irr-val.gold{color:var(--amber)}
 .irr-val.green{color:var(--green)}
-.irr-val.blue{color:#93c5fd}
-.irr-val-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
-
-/* CWG SCORES */
+.irr-val-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
 .cwg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:10px}
-.cwg-cell{background:var(--surface);padding:20px 18px;position:relative}
-.cwg-cell.hero{background:var(--blue)}
-.cwg-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.cwg-cell.hero .cwg-label{color:rgba(255,255,255,0.5)}
-.cwg-lens{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:4px}
-.cwg-cell.hero .cwg-lens{color:white}
-.cwg-score{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500;line-height:1;margin-bottom:2px}
-.cwg-cell.hero .cwg-score{color:white}
-.cwg-bm{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px}
-.cwg-cell.hero .cwg-bm{color:rgba(255,255,255,0.45)}
+.cwg-cell{background:var(--surface);padding:24px 22px;position:relative}
+.cwg-cell.hero{background:var(--amber)}
+.cwg-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.cwg-cell.hero .cwg-lbl{color:rgba(12,13,16,0.5)}
+.cwg-lens{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:6px}
+.cwg-cell.hero .cwg-lens{color:var(--bg)}
+.cwg-score{font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;line-height:1;margin-bottom:6px}
+.cwg-cell.hero .cwg-score{color:var(--bg)}
+.cwg-bm{font-size:13px;color:var(--muted);line-height:1.45}
+.cwg-cell.hero .cwg-bm{color:rgba(12,13,16,0.5)}
 .cwg-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border)}
-.cwg-bar-fill{height:100%;background:var(--blue);transition:width 1s ease}
-.cwg-cell.hero .cwg-bar{background:rgba(255,255,255,0.2)}
-.cwg-cell.hero .cwg-bar-fill{background:rgba(255,255,255,0.6)}
-
-/* OVERALL SCORE ROW */
-.overall-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:10px}
-.ov-cell{background:var(--surface);padding:14px 16px;text-align:center;position:relative}
-.ov-cell.hero{background:var(--surface2)}
-.ov-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;line-height:1;margin-bottom:3px}
-.ov-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.cwg-bar-fill{height:100%;background:var(--amber);transition:width 1s ease}
+.cwg-cell.hero .cwg-bar{background:rgba(12,13,16,0.15)}
+.cwg-cell.hero .cwg-bar-fill{background:rgba(12,13,16,0.35)}
+.ov-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:14px}
+.ov-cell{background:var(--surface);padding:18px 16px;text-align:center;position:relative}
+.ov-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1;margin-bottom:5px}
+.ov-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
 .ov-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--border)}
-.ov-bar-fill{height:100%;background:var(--blue)}
-
-.benchmark-note{display:flex;align-items:center;gap:8px;margin-bottom:28px;padding:10px 14px;background:var(--surface);border:1px solid var(--border)}
-.bm-note-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0}
-.bm-note-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.04em}
-
-/* EXEC NOTE */
-.exec-note{border:1px solid rgba(59,130,246,0.35);border-left:4px solid var(--blue);padding:20px 24px;background:var(--blue-dim);margin-bottom:28px}
-.exec-note-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
-.exec-note-text{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;line-height:1.6}
-
-/* FINDINGS */
-.findings-section-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:32px}
-.findings-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.finding-card{border:1px solid var(--border);background:var(--surface);margin-bottom:12px;overflow:hidden}
-.finding-header{display:flex;align-items:center;gap:14px;padding:15px 20px;cursor:pointer;transition:background 0.15s;user-select:none}
-.finding-header:hover{background:var(--surface2)}
-.finding-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;background:var(--surface2);flex-shrink:0}
-.finding-title-block{flex:1;min-width:0}
-.finding-lens{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
-.finding-title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sev-badge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 10px;border:1px solid;flex-shrink:0}
-.sev-critical{color:var(--red);border-color:var(--red);background:var(--red-dim)}
-.sev-moderate{color:var(--orange);border-color:var(--orange);background:var(--orange-dim)}
-.sev-opportunity{color:var(--green);border-color:var(--green);background:var(--green-dim)}
-.finding-chevron{color:var(--muted);font-size:11px;transition:transform 0.25s;flex-shrink:0}
-.finding-card.open .finding-chevron{transform:rotate(180deg)}
-.finding-body{display:none;padding:18px 20px 20px 66px;border-top:1px solid var(--border)}
-.finding-card.open .finding-body{display:block}
-.finding-analysis{font-size:13px;line-height:1.75;color:rgba(226,232,240,0.8);margin-bottom:16px}
-.actions-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.action-list{display:flex;flex-direction:column;gap:8px}
-.action-item{display:flex;gap:12px;font-size:13px;line-height:1.45}
-.action-arrow{color:var(--blue);font-size:11px;margin-top:2px;flex-shrink:0;font-family:'JetBrains Mono',monospace}
-
-/* ROADMAP */
-.roadmap{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.roadmap-block{background:var(--surface2);border:1px solid var(--border);padding:16px 18px}
-.roadmap-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.roadmap-items{display:flex;flex-direction:column;gap:6px}
-.roadmap-item{font-size:12px;line-height:1.5;color:rgba(226,232,240,0.8);display:flex;gap:8px}
-.roadmap-item::before{content:'›';color:var(--blue);flex-shrink:0}
-
-/* SHARE */
-.share-bar{margin-top:40px;padding:22px 26px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.share-bar-left h3{font-size:14px;font-weight:600;margin-bottom:4px}
-.share-bar-left p{font-size:12px;color:var(--muted);line-height:1.5}
-.share-btns{display:flex;gap:10px;flex-wrap:wrap}
-.share-btn{padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text);transition:all 0.15s}
-.share-btn:hover{border-color:var(--blue);color:var(--blue)}
-.share-btn.primary{background:var(--blue);color:white;border-color:var(--blue)}
-.share-btn.primary:hover{background:#2563eb}
-
-.toast{position:fixed;bottom:28px;right:28px;background:var(--green);color:#052e16;padding:12px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;z-index:999;transform:translateY(80px);opacity:0;transition:all 0.3s;font-weight:600}
+.ov-bar-fill{height:100%;background:var(--amber)}
+.bm-note{display:flex;align-items:center;gap:10px;margin-bottom:30px;padding:12px 18px;background:var(--surface);border:1px solid var(--border)}
+.bm-dot{width:8px;height:8px;background:var(--amber);border-radius:50%;flex-shrink:0}
+.bm-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.exec-note{border:1px solid var(--amber);border-left:4px solid var(--amber);padding:24px 28px;background:var(--amber-dim);margin-bottom:30px}
+.exec-note-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.exec-note-text{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.65}
+.findings-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:14px;margin-bottom:16px;margin-top:36px}
+.findings-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+.fc{border:1px solid var(--border);background:var(--surface);margin-bottom:12px;overflow:hidden}
+.fh{display:flex;align-items:center;gap:16px;padding:18px 24px;cursor:pointer;transition:background 0.15s;user-select:none}
+.fh:hover{background:var(--surface2)}
+.fi{width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--surface2);flex-shrink:0}
+.ftb{flex:1;min-width:0}
+.fl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ft{font-size:16px;font-weight:600;line-height:1.3}
+.sev{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;padding:5px 12px;border:1px solid;flex-shrink:0}
+.sev.c{color:var(--red);border-color:var(--red);background:var(--red-dim)}
+.sev.m{color:var(--orange);border-color:var(--orange);background:var(--orange-dim)}
+.sev.o{color:var(--green);border-color:var(--green);background:var(--green-dim)}
+.fchev{color:var(--muted);font-size:14px;transition:transform 0.25s;flex-shrink:0}
+.fc.open .fchev{transform:rotate(180deg)}
+.fb{display:none;padding:22px 24px 24px 78px;border-top:1px solid var(--border)}
+.fc.open .fb{display:block}
+.fa{font-size:15px;line-height:1.8;color:rgba(232,230,224,0.85);margin-bottom:20px}
+.al{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.alist{display:flex;flex-direction:column;gap:10px}
+.ai{display:flex;gap:14px;font-size:15px;line-height:1.5}
+.arr{color:var(--amber);font-size:12px;margin-top:2px;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.rm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.rmb{background:var(--surface);border:1px solid var(--border);padding:22px 24px}
+.rm-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.rm-items{display:flex;flex-direction:column;gap:10px}
+.rm-item{font-size:14px;line-height:1.6;color:rgba(232,230,224,0.8);display:flex;gap:12px}
+.rm-item::before{content:'→';color:var(--amber);flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:2px}
+.share-bar{margin-top:48px;padding:24px 30px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.sbl h3{font-size:17px;font-weight:600;margin-bottom:5px}
+.sbl p{font-size:14px;color:var(--muted)}
+.sbtns{display:flex;gap:10px;flex-wrap:wrap}
+.sbtn{padding:12px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text);transition:all 0.15s}
+.sbtn:hover{border-color:var(--amber);color:var(--amber)}
+.sbtn.p{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:700}
+.sbtn.p:hover{opacity:0.88}
+.toast{position:fixed;bottom:28px;right:28px;background:var(--green);color:#022c1a;padding:14px 26px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;z-index:999;transform:translateY(80px);opacity:0;transition:all 0.3s;font-weight:700}
 .toast.show{transform:translateY(0);opacity:1}
-
-@media print{.topbar,.nav-footer,.share-bar,.toast{display:none!important}.page{display:flex!important}#page-0,#page-1,#page-2,#page-3,#page-4,#page-5,#page-6,#loading-page{display:none!important}#report-page{display:block!important}.finding-body{display:block!important}}
-@media(max-width:640px){.topbar,.nav-footer{padding-left:20px;padding-right:20px}.section-page{padding:36px 20px 16px}.intake-grid{grid-template-columns:1fr}.cwg-grid{grid-template-columns:1fr}.overall-row{grid-template-columns:repeat(2,1fr)}.framework-grid{grid-template-columns:1fr}.report-page{padding:28px 20px 60px}.roadmap{grid-template-columns:1fr}}
+@media(max-width:640px){.topbar,.nav-footer{padding-left:20px;padding-right:20px}.section-page,.report-pg{padding-left:20px;padding-right:20px}.ig,.rm-grid{grid-template-columns:1fr}.cwg-grid,.ov-row{grid-template-columns:1fr}.fw-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="shell">
-
 <div class="topbar">
-  <div class="topbar-logo">
-    <div class="logo-mark">S7</div>
-    <div class="logo-text"><span>Stage 7</span> Revenue Systems</div>
-  </div>
-  <div class="topbar-progress" id="topbar-dots"></div>
-  <div class="topbar-right" id="topbar-right">Portfolio Diagnostic</div>
+  <div class="topbar-brand">Stage 7 · Portfolio Diagnostic</div>
+  <div class="topbar-progress" id="dots"></div>
+  <div class="topbar-right" id="tright">CREATE. WIN. GROW.™</div>
 </div>
 
-<!-- PAGE 0: WELCOME -->
 <div class="page active" id="page-0">
   <div class="welcome">
     <div class="welcome-kicker">Portfolio Sales Excellence Assessment</div>
     <h1>Does your revenue execution<br>match your <em>operational rigor?</em></h1>
-    <p class="welcome-desc">Apply the same analytical discipline you use for cost and margin optimization to your portfolio companies' sales execution — and identify where IRR is being left on the table.</p>
-    <div class="framework-grid">
-      <div class="fw-cell">
-        <div class="fw-num">LENS 01</div>
-        <div class="fw-title">CREATE.</div>
-        <div class="fw-sub">Pipeline Generation Systems</div>
-      </div>
-      <div class="fw-cell">
-        <div class="fw-num">LENS 02</div>
-        <div class="fw-title">WIN.</div>
-        <div class="fw-sub">Deal Execution Effectiveness</div>
-      </div>
-      <div class="fw-cell">
-        <div class="fw-num">LENS 03</div>
-        <div class="fw-title">GROW.</div>
-        <div class="fw-sub">Customer Expansion Systems</div>
-      </div>
+    <p class="welcome-desc">Apply the S7 CREATE. WIN. GROW.™ framework to identify where sales execution gaps are costing IRR — and build the 90/180-day roadmap to close them.</p>
+    <div class="fw-grid">
+      <div class="fw-cell"><div class="fw-num">Lens 01</div><div class="fw-title">CREATE.</div><div class="fw-sub">Pipeline Generation Systems</div></div>
+      <div class="fw-cell"><div class="fw-num">Lens 02</div><div class="fw-title">WIN.</div><div class="fw-sub">Deal Execution Effectiveness</div></div>
+      <div class="fw-cell"><div class="fw-num">Lens 03</div><div class="fw-title">GROW.</div><div class="fw-sub">Customer Expansion Systems</div></div>
     </div>
     <button class="start-btn" onclick="goTo(1)">Begin Assessment →</button>
     <div class="time-note">≈ 10 minutes · AI-generated portfolio intelligence brief</div>
   </div>
 </div>
 
-<!-- PAGE 1: PORTFOLIO CONTEXT -->
 <div class="page" id="page-1">
   <div class="section-page">
-    <div class="section-eyebrow"><div class="section-tag">Portfolio Context</div><div class="section-lens">Step 1 of 6</div></div>
+    <div class="section-eyebrow"><div class="section-tag">Portfolio Context</div><div class="section-step">Step 1 of 6</div></div>
     <div class="section-h">About your <em>portfolio company</em></div>
-    <p class="section-sub">This calibrates every benchmark and IRR impact calculation against your specific company's profile and hold period.</p>
-    <div class="intake-grid">
-      <div class="intake-field"><label class="intake-label">Company Name *</label><input class="intake-input" id="co_name" type="text" placeholder="Portfolio Co. Name" oninput="updateNav()"></div>
-      <div class="intake-field"><label class="intake-label">Your Role *</label><input class="intake-input" id="pe_role" type="text" placeholder="Operating Partner / Deal Lead" oninput="updateNav()"></div>
-      <div class="intake-field"><label class="intake-label">Annual Revenue *</label>
-        <select class="q-select" id="co_revenue" onchange="updateNav()"><option value="">Select range</option><option>Under $10M</option><option>$10M – $25M</option><option>$25M – $50M</option><option>$50M – $100M</option><option>$100M – $250M</option><option>$250M – $500M</option><option>Over $500M</option></select>
-      </div>
-      <div class="intake-field"><label class="intake-label">Business Type *</label>
-        <select class="q-select" id="co_type" onchange="updateNav()"><option value="">Select type</option><option>B2B SaaS / Technology</option><option>High-Tech Industrial</option><option>Professional Services</option><option>Manufacturing / Distribution</option><option>Business Services</option><option>Healthcare / Life Sciences</option><option>Other B2B</option></select>
-      </div>
-      <div class="intake-field"><label class="intake-label">Hold Period Remaining *</label>
-        <select class="q-select" id="hold_period" onchange="updateNav()"><option value="">Select remaining hold</option><option>Less than 1 year</option><option>1–2 years</option><option>2–3 years</option><option>3–4 years</option><option>4+ years</option></select>
-      </div>
-      <div class="intake-field"><label class="intake-label">Revenue Growth Target *</label>
-        <select class="q-select" id="growth_target" onchange="updateNav()"><option value="">Select target</option><option>Less than 10% annually</option><option>10–20% annually</option><option>20–30% annually</option><option>30–50% annually</option><option>50%+ annually</option></select>
-      </div>
-      <div class="intake-field"><label class="intake-label">Industry / Vertical</label><input class="intake-input" id="co_industry" type="text" placeholder="e.g. Industrial Automation" oninput="updateNav()"></div>
-      <div class="intake-field"><label class="intake-label">Current Sales Team Size</label>
-        <select class="q-select" id="sales_team" onchange="updateNav()"><option value="">Select size</option><option>1–5 reps</option><option>6–15 reps</option><option>16–30 reps</option><option>31–75 reps</option><option>75+ reps</option></select>
-      </div>
+    <p class="section-sub">This calibrates every benchmark and IRR impact calculation against your company's profile, revenue band, and remaining hold period.</p>
+    <div class="ig">
+      <div class="if"><label class="il">Company Name *</label><input type="text" id="co_name" placeholder="Portfolio Co. Name" oninput="un()"></div>
+      <div class="if"><label class="il">Your Role *</label><input type="text" id="pe_role" placeholder="Operating Partner / Deal Lead" oninput="un()"></div>
+      <div class="if"><label class="il">Annual Revenue *</label><select id="co_rev" onchange="un()"><option value="">Select range</option><option>Under $10M</option><option>$10M – $25M</option><option>$25M – $50M</option><option>$50M – $100M</option><option>$100M – $250M</option><option>$250M – $500M</option><option>Over $500M</option></select></div>
+      <div class="if"><label class="il">Business Type *</label><select id="co_type" onchange="un()"><option value="">Select type</option><option>B2B SaaS / Technology</option><option>High-Tech Industrial</option><option>Professional Services</option><option>Manufacturing / Distribution</option><option>Business Services</option><option>Healthcare / Life Sciences</option><option>Other B2B</option></select></div>
+      <div class="if"><label class="il">Hold Period Remaining *</label><select id="hold" onchange="un()"><option value="">Select remaining hold</option><option>Less than 1 year</option><option>1–2 years</option><option>2–3 years</option><option>3–4 years</option><option>4+ years</option></select></div>
+      <div class="if"><label class="il">Revenue Growth Target *</label><select id="g_target" onchange="un()"><option value="">Select target</option><option>Less than 10% annually</option><option>10–20% annually</option><option>20–30% annually</option><option>30–50% annually</option><option>50%+ annually</option></select></div>
+      <div class="if"><label class="il">Industry / Vertical</label><input type="text" id="industry" placeholder="e.g. Industrial Automation" oninput="un()"></div>
+      <div class="if"><label class="il">Sales Team Size</label><select id="team_sz" onchange="un()"><option value="">Select size</option><option>1–5 reps</option><option>6–15 reps</option><option>16–30 reps</option><option>31–75 reps</option><option>75+ reps</option></select></div>
     </div>
-    <div class="err-block" id="err-1" style="display:none">Please complete all required fields (*) to continue.</div>
+    <div class="err" id="err-1" style="display:none">Please complete all required fields (*) to continue.</div>
   </div>
-  <div class="nav-footer">
-    <div class="nav-completion"><div class="nav-bar"><div class="nav-bar-fill" id="nf-1"></div></div><div class="nav-pct" id="np-1">0%</div></div>
-    <div class="nav-btns"><button class="nav-back" onclick="goTo(0)">← Back</button><button class="nav-next" id="next-1" onclick="nextPage(1)" disabled>Continue →</button></div>
-  </div>
+  <div class="nav-footer"><div class="nav-left"><div class="nav-bar"><div class="nav-fill" id="nf-1"></div></div><div class="nav-pct" id="np-1">0%</div></div><div class="nav-btns"><button class="btn-back" onclick="goTo(0)">← Back</button><button class="btn-next" id="nx-1" onclick="np(1)" disabled>Continue →</button></div></div>
 </div>
 
-<!-- PAGE 2: CREATE -->
 <div class="page" id="page-2">
   <div class="section-page">
-    <div class="section-eyebrow"><div class="section-tag">Lens 01 — CREATE.</div><div class="section-lens">Step 2 of 6</div></div>
+    <div class="section-eyebrow"><div class="section-tag">Lens 01 — CREATE.</div><div class="section-step">Step 2 of 6</div></div>
     <div class="section-h">Pipeline <em>Generation Systems</em></div>
-    <p class="section-sub">B2B companies require 3–4X their growth target in qualified pipeline. Most operate well below that threshold without realizing it.</p>
-    <div class="industry-callout">
-      <div class="ic-label">Industry Reality</div>
-      <div class="ic-text">Companies need 3.5X quota coverage minimum for predictable growth. Pipeline quality scoring and lead-to-opportunity conversion are the two most commonly unmeasured levers.</div>
-    </div>
+    <p class="section-sub">B2B companies require 3–4X their growth target in qualified pipeline. Most portfolio companies operate well below that threshold without realizing it.</p>
+    <div class="callout"><div class="callout-tag">Industry Reality</div><div class="callout-text">Companies need 3.5X quota coverage minimum for predictable growth. Pipeline quality scoring and lead-to-opportunity conversion are the two most commonly unmeasured levers in PE portfolio companies.</div></div>
 
-    <div class="q" id="q-coverage-wrap">
-      <div class="q-id">C.1 — Pipeline Coverage Ratio</div>
-      <div class="q-text">What is the current pipeline-to-quota ratio? (Total qualified pipeline value ÷ annual sales target)</div>
-      <div class="q-benchmark">Industry Benchmark: 3.5X minimum · Best-in-class: 4.5X+</div>
-      <div class="number-input-row">
-        <input class="number-input" id="r_coverage" type="number" min="0" max="20" step="0.1" placeholder="2.1" oninput="updateCoverageBM(); markIfNumeric('r_coverage','q-coverage-wrap'); updateNav()">
-        <div class="number-unit">X coverage</div>
-      </div>
-      <div class="bm-compare" id="coverage-bm-compare"></div>
-    </div>
-
-    <div class="q" id="q-leadconv-wrap">
-      <div class="q-id">C.2 — Lead-to-Opportunity Conversion</div>
-      <div class="q-text">What percentage of leads convert to qualified opportunities?</div>
-      <div class="q-benchmark">Industry Benchmark: 15–25% · Best-in-class: 35%+</div>
-      <div class="number-input-row">
-        <input class="number-input" id="r_leadconv" type="number" min="0" max="100" placeholder="18" oninput="markIfNumeric('r_leadconv','q-leadconv-wrap'); updateNav()">
-        <div class="number-unit">%</div>
-      </div>
-    </div>
-
-    <div class="q" id="q-salescycle-wrap">
-      <div class="q-id">C.3 — Sales Cycle Duration</div>
-      <div class="q-text">What is the average sales cycle length from first meeting to close?</div>
-      <select class="q-select" id="r_salescycle" onchange="markAnswered('q-salescycle-wrap'); updateNav()">
-        <option value="">Select answer</option>
-        <option>Under 30 days</option><option>30–60 days</option><option>60–90 days</option><option>90–120 days</option><option>120–180 days</option><option>180+ days</option><option>We don't track this consistently</option>
-      </select>
-    </div>
-
-    <div class="q" id="q-pipelineq-wrap">
-      <div class="q-id">C.4 — Pipeline Quality Assessment</div>
-      <div class="q-text">How would you characterize the quality of deals currently in the pipeline?</div>
-      <div class="q-hint">Be honest — are these real opportunities with defined next steps, or is the pipeline padded with stale deals and wishful thinking?</div>
-      <div class="scale-ends"><span class="scale-end">Mostly stale / optimistic</span><span class="scale-end">Rigorously qualified</span></div>
-      <div class="scale-row" id="r_pipelineq">
-        <button class="s-btn" onclick="rate('r_pipelineq',1,'q-pipelineq-wrap')">1</button><button class="s-btn" onclick="rate('r_pipelineq',2,'q-pipelineq-wrap')">2</button><button class="s-btn" onclick="rate('r_pipelineq',3,'q-pipelineq-wrap')">3</button><button class="s-btn" onclick="rate('r_pipelineq',4,'q-pipelineq-wrap')">4</button><button class="s-btn" onclick="rate('r_pipelineq',5,'q-pipelineq-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-territory-wrap">
-      <div class="q-id">C.5 — Territory & Account Coverage</div>
-      <div class="q-text">How systematically are target accounts identified, assigned, and pursued — vs. reps self-selecting opportunistically?</div>
-      <div class="scale-ends"><span class="scale-end">Reps choose their own targets</span><span class="scale-end">Data-driven territory design</span></div>
-      <div class="scale-row" id="r_territory">
-        <button class="s-btn" onclick="rate('r_territory',1,'q-territory-wrap')">1</button><button class="s-btn" onclick="rate('r_territory',2,'q-territory-wrap')">2</button><button class="s-btn" onclick="rate('r_territory',3,'q-territory-wrap')">3</button><button class="s-btn" onclick="rate('r_territory',4,'q-territory-wrap')">4</button><button class="s-btn" onclick="rate('r_territory',5,'q-territory-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="err-block" id="err-2" style="display:none">Please answer all questions to continue.</div>
+    <div class="q" id="qw-cov"><div class="q-id">C.1 — Pipeline Coverage Ratio</div><div class="q-text">What is the current pipeline-to-quota ratio? (Total qualified pipeline ÷ annual sales target)</div><div class="q-bm">Industry Benchmark: 3.5X minimum · Best-in-class: 4.5X+</div><div class="num-row"><input class="num-input" id="r_cov" type="number" min="0" max="20" step="0.1" placeholder="2.1" oninput="bmCov();mNum('r_cov','qw-cov');un()"><div class="num-unit">X coverage</div></div><div class="bm-live" id="bm-cov"></div></div>
+    <div class="q" id="qw-lc"><div class="q-id">C.2 — Lead-to-Opportunity Conversion</div><div class="q-text">What percentage of leads convert to qualified opportunities?</div><div class="q-bm">Industry Benchmark: 15–25% · Best-in-class: 35%+</div><div class="num-row"><input class="num-input" id="r_lc" type="number" min="0" max="100" placeholder="18" oninput="mNum('r_lc','qw-lc');un()"><div class="num-unit">%</div></div></div>
+    <div class="q" id="qw-sc"><div class="q-id">C.3 — Sales Cycle Duration</div><div class="q-text">What is the average sales cycle from first meeting to close?</div><select id="r_sc" onchange="ma('qw-sc');un()"><option value="">Select answer</option><option>Under 30 days</option><option>30–60 days</option><option>60–90 days</option><option>90–120 days</option><option>120–180 days</option><option>180+ days</option><option>We don't track this consistently</option></select></div>
+    <div class="q" id="qw-pq"><div class="q-id">C.4 — Pipeline Quality</div><div class="q-text">How would you honestly characterize the quality of deals currently in the pipeline?</div><div class="q-hint">Are these real opportunities with defined next steps and confirmed budget — or is the pipeline padded with stale deals and wishful thinking?</div><div class="scale-ends"><span class="scale-end">Mostly stale / optimistic</span><span class="scale-end">Rigorously qualified</span></div><div class="scale-row" id="r_pq"><button class="s-btn" onclick="rt('r_pq',1,'qw-pq')">1</button><button class="s-btn" onclick="rt('r_pq',2,'qw-pq')">2</button><button class="s-btn" onclick="rt('r_pq',3,'qw-pq')">3</button><button class="s-btn" onclick="rt('r_pq',4,'qw-pq')">4</button><button class="s-btn" onclick="rt('r_pq',5,'qw-pq')">5</button></div></div>
+    <div class="q" id="qw-ter"><div class="q-id">C.5 — Territory & Account Coverage</div><div class="q-text">How systematically are target accounts identified, assigned, and pursued — vs. reps self-selecting opportunistically?</div><div class="scale-ends"><span class="scale-end">Reps choose their own targets</span><span class="scale-end">Data-driven territory design</span></div><div class="scale-row" id="r_ter"><button class="s-btn" onclick="rt('r_ter',1,'qw-ter')">1</button><button class="s-btn" onclick="rt('r_ter',2,'qw-ter')">2</button><button class="s-btn" onclick="rt('r_ter',3,'qw-ter')">3</button><button class="s-btn" onclick="rt('r_ter',4,'qw-ter')">4</button><button class="s-btn" onclick="rt('r_ter',5,'qw-ter')">5</button></div></div>
+    <div class="err" id="err-2" style="display:none">Please answer all questions to continue.</div>
   </div>
-  <div class="nav-footer">
-    <div class="nav-completion"><div class="nav-bar"><div class="nav-bar-fill" id="nf-2"></div></div><div class="nav-pct" id="np-2">0%</div></div>
-    <div class="nav-btns"><button class="nav-back" onclick="goTo(1)">← Back</button><button class="nav-next" id="next-2" onclick="nextPage(2)" disabled>Continue →</button></div>
-  </div>
+  <div class="nav-footer"><div class="nav-left"><div class="nav-bar"><div class="nav-fill" id="nf-2"></div></div><div class="nav-pct" id="np-2">0%</div></div><div class="nav-btns"><button class="btn-back" onclick="goTo(1)">← Back</button><button class="btn-next" id="nx-2" onclick="np(2)" disabled>Continue →</button></div></div>
 </div>
 
-<!-- PAGE 3: WIN -->
 <div class="page" id="page-3">
   <div class="section-page">
-    <div class="section-eyebrow"><div class="section-tag">Lens 02 — WIN.</div><div class="section-lens">Step 3 of 6</div></div>
+    <div class="section-eyebrow"><div class="section-tag">Lens 02 — WIN.</div><div class="section-step">Step 3 of 6</div></div>
     <div class="section-h">Deal Execution <em>Effectiveness</em></div>
-    <p class="section-sub">Average B2B win rates are 20–25%. Best-in-class organizations achieve 40%+. The gap is almost always process and management, not product.</p>
-    <div class="industry-callout">
-      <div class="ic-label">Industry Reality</div>
-      <div class="ic-text">Forecast accuracy reveals execution gaps more reliably than pipeline size. "No decision" rates and competitive displacement patterns are the most diagnostic — and most ignored — sales metrics.</div>
-    </div>
+    <p class="section-sub">Average B2B win rates are 20–25%. Best-in-class organizations achieve 40%+. The gap is almost always process and management discipline — not product.</p>
+    <div class="callout"><div class="callout-tag">Industry Reality</div><div class="callout-text">Forecast accuracy reveals execution gaps more reliably than pipeline size. "No decision" rates and deal slippage patterns are the most diagnostic — and most commonly ignored — metrics in portfolio company sales reviews.</div></div>
 
-    <div class="q" id="q-winrate-wrap">
-      <div class="q-id">W.1 — Competitive Win Rate</div>
-      <div class="q-text">What is the current win rate on competitive opportunities (deals where you were evaluated against at least one alternative)?</div>
-      <div class="q-benchmark">Industry Benchmark: 20–25% average · Best-in-class: 40%+</div>
-      <div class="number-input-row">
-        <input class="number-input" id="r_winrate" type="number" min="0" max="100" placeholder="22" oninput="updateWinrateBM(); markIfNumeric('r_winrate','q-winrate-wrap'); updateNav()">
-        <div class="number-unit">%</div>
-      </div>
-      <div class="bm-compare" id="winrate-bm-compare"></div>
-    </div>
-
-    <div class="q" id="q-forecast-wrap">
-      <div class="q-id">W.2 — Forecast Accuracy</div>
-      <div class="q-text">How accurate is the sales forecast at the start of each quarter vs. actual close?</div>
-      <div class="q-benchmark">Best-in-class: within ±5% · Most companies: ±20–30%</div>
-      <select class="q-select" id="r_forecast" onchange="markAnswered('q-forecast-wrap'); updateNav()">
-        <option value="">Select answer</option>
-        <option>Within 5% — highly predictable</option><option>Within 10–15%</option><option>Within 20–25%</option><option>Off by 30%+ regularly</option><option>We don't formally forecast</option>
-      </select>
-    </div>
-
-    <div class="q" id="q-slippage-wrap">
-      <div class="q-id">W.3 — Deal Slippage Patterns</div>
-      <div class="q-text">What is the primary reason deals slip from the forecast quarter — and is it tracked systematically?</div>
-      <div class="chips" id="r_slippage">
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">Prospect budget / approval delays</div>
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">Champion lost internal buy-in</div>
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">Competitor entered late</div>
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">Pricing / negotiation stall</div>
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">Rep forecasting too optimistically</div>
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">Legal / procurement delays</div>
-        <div class="chip" onclick="toggleChip(this,'q-slippage-wrap')">We don't track slip reasons</div>
-      </div>
-    </div>
-
-    <div class="q" id="q-nodecision-wrap">
-      <div class="q-id">W.4 — "No Decision" Rate</div>
-      <div class="q-text">What percentage of qualified pipeline ends in "no decision" (prospect decides not to buy from anyone)?</div>
-      <div class="q-hint">A high no-decision rate often signals a value articulation or urgency problem, not a competitive problem. It's a different fix than a low win rate.</div>
-      <select class="q-select" id="r_nodecision" onchange="markAnswered('q-nodecision-wrap'); updateNav()">
-        <option value="">Select answer</option>
-        <option>Under 10% — rare</option><option>10–20%</option><option>20–30%</option><option>30%+ — very common</option><option>We don't track this</option>
-      </select>
-    </div>
-
-    <div class="q" id="q-salesmgmt-wrap">
-      <div class="q-id">W.5 — Sales Management Process</div>
-      <div class="q-text">How systematically do sales managers coach deals, review pipeline health, and hold reps accountable to defined process milestones?</div>
-      <div class="scale-ends"><span class="scale-end">Ad hoc / reactive</span><span class="scale-end">Structured weekly cadence</span></div>
-      <div class="scale-row" id="r_salesmgmt">
-        <button class="s-btn" onclick="rate('r_salesmgmt',1,'q-salesmgmt-wrap')">1</button><button class="s-btn" onclick="rate('r_salesmgmt',2,'q-salesmgmt-wrap')">2</button><button class="s-btn" onclick="rate('r_salesmgmt',3,'q-salesmgmt-wrap')">3</button><button class="s-btn" onclick="rate('r_salesmgmt',4,'q-salesmgmt-wrap')">4</button><button class="s-btn" onclick="rate('r_salesmgmt',5,'q-salesmgmt-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-differentiation-wrap">
-      <div class="q-id">W.6 — Competitive Differentiation Articulation</div>
-      <div class="q-text">How effectively can your sales organization articulate competitive differentiation to economic decision-makers — not just technical buyers?</div>
-      <div class="scale-ends"><span class="scale-end">Inconsistent / weak</span><span class="scale-end">Crisp, consistent, compelling</span></div>
-      <div class="scale-row" id="r_differentiation">
-        <button class="s-btn" onclick="rate('r_differentiation',1,'q-differentiation-wrap')">1</button><button class="s-btn" onclick="rate('r_differentiation',2,'q-differentiation-wrap')">2</button><button class="s-btn" onclick="rate('r_differentiation',3,'q-differentiation-wrap')">3</button><button class="s-btn" onclick="rate('r_differentiation',4,'q-differentiation-wrap')">4</button><button class="s-btn" onclick="rate('r_differentiation',5,'q-differentiation-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="err-block" id="err-3" style="display:none">Please answer all questions to continue.</div>
+    <div class="q" id="qw-wr"><div class="q-id">W.1 — Competitive Win Rate</div><div class="q-text">What is the current win rate on competitive opportunities — deals where you were evaluated against at least one alternative?</div><div class="q-bm">Industry Average: 20–25% · Best-in-class: 40%+</div><div class="num-row"><input class="num-input" id="r_wr" type="number" min="0" max="100" placeholder="22" oninput="bmWR();mNum('r_wr','qw-wr');un()"><div class="num-unit">%</div></div><div class="bm-live" id="bm-wr"></div></div>
+    <div class="q" id="qw-fc"><div class="q-id">W.2 — Forecast Accuracy</div><div class="q-text">How accurate is the sales forecast at the start of each quarter vs. actual close?</div><div class="q-bm">Best-in-class: within ±5% · Most companies: ±20–30%</div><select id="r_fc" onchange="ma('qw-fc');un()"><option value="">Select answer</option><option>Within 5% — highly predictable</option><option>Within 10–15%</option><option>Within 20–25%</option><option>Off by 30%+ regularly</option><option>We don't formally forecast</option></select></div>
+    <div class="q" id="qw-sl"><div class="q-id">W.3 — Deal Slippage Primary Causes</div><div class="q-text">What most frequently causes deals to slip from the forecast quarter? Select all that apply.</div><div class="chips" id="r_sl"><div class="chip" onclick="tc(this,'qw-sl')">Prospect budget / approval delays</div><div class="chip" onclick="tc(this,'qw-sl')">Champion lost internal buy-in</div><div class="chip" onclick="tc(this,'qw-sl')">Competitor entered late</div><div class="chip" onclick="tc(this,'qw-sl')">Pricing / negotiation stall</div><div class="chip" onclick="tc(this,'qw-sl')">Reps forecasting too optimistically</div><div class="chip" onclick="tc(this,'qw-sl')">Legal / procurement delays</div><div class="chip" onclick="tc(this,'qw-sl')">We don't track slip reasons</div></div></div>
+    <div class="q" id="qw-nd"><div class="q-id">W.4 — "No Decision" Rate</div><div class="q-text">What percentage of qualified pipeline ends in "no decision" — the prospect decides not to buy from anyone?</div><div class="q-hint">A high no-decision rate signals a value articulation or urgency problem — not a competitive one. It's a different fix than a low win rate.</div><select id="r_nd" onchange="ma('qw-nd');un()"><option value="">Select answer</option><option>Under 10% — rare</option><option>10–20%</option><option>20–30%</option><option>30%+ — very common</option><option>We don't track this</option></select></div>
+    <div class="q" id="qw-sm"><div class="q-id">W.5 — Sales Management Process</div><div class="q-text">How systematically do sales managers coach deals, review pipeline health, and hold reps accountable to defined process milestones?</div><div class="scale-ends"><span class="scale-end">Ad hoc / reactive</span><span class="scale-end">Structured weekly cadence</span></div><div class="scale-row" id="r_sm"><button class="s-btn" onclick="rt('r_sm',1,'qw-sm')">1</button><button class="s-btn" onclick="rt('r_sm',2,'qw-sm')">2</button><button class="s-btn" onclick="rt('r_sm',3,'qw-sm')">3</button><button class="s-btn" onclick="rt('r_sm',4,'qw-sm')">4</button><button class="s-btn" onclick="rt('r_sm',5,'qw-sm')">5</button></div></div>
+    <div class="q" id="qw-df"><div class="q-id">W.6 — Competitive Differentiation Articulation</div><div class="q-text">How effectively can your sales org articulate competitive differentiation to economic decision-makers — not just technical buyers?</div><div class="scale-ends"><span class="scale-end">Inconsistent / weak</span><span class="scale-end">Crisp, consistent, compelling</span></div><div class="scale-row" id="r_df"><button class="s-btn" onclick="rt('r_df',1,'qw-df')">1</button><button class="s-btn" onclick="rt('r_df',2,'qw-df')">2</button><button class="s-btn" onclick="rt('r_df',3,'qw-df')">3</button><button class="s-btn" onclick="rt('r_df',4,'qw-df')">4</button><button class="s-btn" onclick="rt('r_df',5,'qw-df')">5</button></div></div>
+    <div class="err" id="err-3" style="display:none">Please answer all questions to continue.</div>
   </div>
-  <div class="nav-footer">
-    <div class="nav-completion"><div class="nav-bar"><div class="nav-bar-fill" id="nf-3"></div></div><div class="nav-pct" id="np-3">0%</div></div>
-    <div class="nav-btns"><button class="nav-back" onclick="goTo(2)">← Back</button><button class="nav-next" id="next-3" onclick="nextPage(3)" disabled>Continue →</button></div>
-  </div>
+  <div class="nav-footer"><div class="nav-left"><div class="nav-bar"><div class="nav-fill" id="nf-3"></div></div><div class="nav-pct" id="np-3">0%</div></div><div class="nav-btns"><button class="btn-back" onclick="goTo(2)">← Back</button><button class="btn-next" id="nx-3" onclick="np(3)" disabled>Continue →</button></div></div>
 </div>
 
-<!-- PAGE 4: GROW -->
 <div class="page" id="page-4">
   <div class="section-page">
-    <div class="section-eyebrow"><div class="section-tag">Lens 03 — GROW.</div><div class="section-lens">Step 4 of 6</div></div>
+    <div class="section-eyebrow"><div class="section-tag">Lens 03 — GROW.</div><div class="section-step">Step 4 of 6</div></div>
     <div class="section-h">Customer Expansion <em>Systems</em></div>
-    <p class="section-sub">Hidden churn patterns silently destroy lifetime value calculations and growth projections. Most portfolio companies don't discover this until it's too late in the hold period.</p>
-    <div class="industry-callout">
-      <div class="ic-label">Industry Reality</div>
-      <div class="ic-text">Net Dollar Retention above 110% is the single most powerful predictor of scalable growth. Companies below 90% NDR are running on a treadmill — new revenue replaces lost revenue rather than stacking.</div>
-    </div>
+    <p class="section-sub">Hidden churn patterns silently destroy lifetime value calculations and exit multiples. Most portfolio companies don't discover them until it's too late in the hold period.</p>
+    <div class="callout"><div class="callout-tag">Industry Reality</div><div class="callout-text">Net Dollar Retention above 110% is the single most powerful predictor of scalable growth. Companies below 90% NDR are running on a treadmill — new revenue replaces lost revenue rather than stacking on top of it.</div></div>
 
-    <div class="q" id="q-ndr-wrap">
-      <div class="q-id">G.1 — Net Dollar Retention (NDR)</div>
-      <div class="q-text">What is current Net Dollar Retention — existing customer revenue this year vs. same cohort last year, including expansions and churn?</div>
-      <div class="q-benchmark">Benchmark: 90% floor · Growth-grade: 100–110% · Best-in-class: 120%+</div>
-      <div class="number-input-row">
-        <input class="number-input" id="r_ndr" type="number" min="0" max="200" placeholder="94" oninput="updateNDRBM(); markIfNumeric('r_ndr','q-ndr-wrap'); updateNav()">
-        <div class="number-unit">% NDR</div>
-      </div>
-      <div class="bm-compare" id="ndr-bm-compare"></div>
-    </div>
-
-    <div class="q" id="q-churnpattern-wrap">
-      <div class="q-id">G.2 — Churn Pattern Visibility</div>
-      <div class="q-text">How clearly do you understand when and why customers churn — with root cause data, not anecdote?</div>
-      <div class="scale-ends"><span class="scale-end">No systematic analysis</span><span class="scale-end">Full cohort + root cause data</span></div>
-      <div class="scale-row" id="r_churnpattern">
-        <button class="s-btn" onclick="rate('r_churnpattern',1,'q-churnpattern-wrap')">1</button><button class="s-btn" onclick="rate('r_churnpattern',2,'q-churnpattern-wrap')">2</button><button class="s-btn" onclick="rate('r_churnpattern',3,'q-churnpattern-wrap')">3</button><button class="s-btn" onclick="rate('r_churnpattern',4,'q-churnpattern-wrap')">4</button><button class="s-btn" onclick="rate('r_churnpattern',5,'q-churnpattern-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-multiproduct-wrap">
-      <div class="q-id">G.3 — Multi-Product Penetration</div>
-      <div class="q-text">What percentage of customers use more than one product or service line?</div>
-      <div class="q-hint">Multi-product adoption is the strongest churn protection and the highest-margin expansion path. It's often the most underleveraged asset in the portfolio.</div>
-      <select class="q-select" id="r_multiproduct" onchange="markAnswered('q-multiproduct-wrap'); updateNav()">
-        <option value="">Select answer</option>
-        <option>Under 10% — single product dominates</option><option>10–25%</option><option>25–50%</option><option>50–70%</option><option>Over 70% — high penetration</option><option>We only have one product / service line</option>
-      </select>
-    </div>
-
-    <div class="q" id="q-accountmgmt-wrap">
-      <div class="q-id">G.4 — Account Management Process Maturity</div>
-      <div class="q-text">How mature is your account management motion — QBRs, health scoring, expansion playbooks, executive relationship coverage?</div>
-      <div class="scale-ends"><span class="scale-end">Reactive / relationship-based</span><span class="scale-end">Systematic expansion engine</span></div>
-      <div class="scale-row" id="r_accountmgmt">
-        <button class="s-btn" onclick="rate('r_accountmgmt',1,'q-accountmgmt-wrap')">1</button><button class="s-btn" onclick="rate('r_accountmgmt',2,'q-accountmgmt-wrap')">2</button><button class="s-btn" onclick="rate('r_accountmgmt',3,'q-accountmgmt-wrap')">3</button><button class="s-btn" onclick="rate('r_accountmgmt',4,'q-accountmgmt-wrap')">4</button><button class="s-btn" onclick="rate('r_accountmgmt',5,'q-accountmgmt-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-wallet-wrap">
-      <div class="q-id">G.5 — Share of Wallet Analysis</div>
-      <div class="q-text">For your top 20 accounts, do you have a documented understanding of total addressable spend — and what percentage you currently capture?</div>
-      <div class="scale-ends"><span class="scale-end">No visibility into wallet share</span><span class="scale-end">Fully mapped and pursued</span></div>
-      <div class="scale-row" id="r_wallet">
-        <button class="s-btn" onclick="rate('r_wallet',1,'q-wallet-wrap')">1</button><button class="s-btn" onclick="rate('r_wallet',2,'q-wallet-wrap')">2</button><button class="s-btn" onclick="rate('r_wallet',3,'q-wallet-wrap')">3</button><button class="s-btn" onclick="rate('r_wallet',4,'q-wallet-wrap')">4</button><button class="s-btn" onclick="rate('r_wallet',5,'q-wallet-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="err-block" id="err-4" style="display:none">Please answer all questions to continue.</div>
+    <div class="q" id="qw-ndr"><div class="q-id">G.1 — Net Dollar Retention (NDR)</div><div class="q-text">What is current Net Dollar Retention — existing customer revenue this year vs. same cohort last year, including expansions, contractions, and churn?</div><div class="q-bm">Floor: 90% · Growth-grade: 100–110% · Best-in-class: 120%+</div><div class="num-row"><input class="num-input" id="r_ndr" type="number" min="0" max="200" placeholder="94" oninput="bmNDR();mNum('r_ndr','qw-ndr');un()"><div class="num-unit">% NDR</div></div><div class="bm-live" id="bm-ndr"></div></div>
+    <div class="q" id="qw-chp"><div class="q-id">G.2 — Churn Pattern Visibility</div><div class="q-text">How clearly do you understand when and why customers churn — with root cause data, not anecdote?</div><div class="scale-ends"><span class="scale-end">No systematic analysis</span><span class="scale-end">Full cohort + root cause data</span></div><div class="scale-row" id="r_chp"><button class="s-btn" onclick="rt('r_chp',1,'qw-chp')">1</button><button class="s-btn" onclick="rt('r_chp',2,'qw-chp')">2</button><button class="s-btn" onclick="rt('r_chp',3,'qw-chp')">3</button><button class="s-btn" onclick="rt('r_chp',4,'qw-chp')">4</button><button class="s-btn" onclick="rt('r_chp',5,'qw-chp')">5</button></div></div>
+    <div class="q" id="qw-mp"><div class="q-id">G.3 — Multi-Product Penetration</div><div class="q-text">What percentage of customers use more than one product or service line?</div><div class="q-hint">Multi-product adoption is the strongest churn protection and the highest-margin expansion path. It's often the most underleveraged asset in a PE portfolio company.</div><select id="r_mp" onchange="ma('qw-mp');un()"><option value="">Select answer</option><option>Under 10% — single product dominates</option><option>10–25%</option><option>25–50%</option><option>50–70%</option><option>Over 70% — high penetration</option><option>We only have one product / service line</option></select></div>
+    <div class="q" id="qw-am"><div class="q-id">G.4 — Account Management Maturity</div><div class="q-text">How mature is your account management motion — QBRs, health scoring, expansion playbooks, executive relationship coverage?</div><div class="scale-ends"><span class="scale-end">Reactive / relationship-based</span><span class="scale-end">Systematic expansion engine</span></div><div class="scale-row" id="r_am"><button class="s-btn" onclick="rt('r_am',1,'qw-am')">1</button><button class="s-btn" onclick="rt('r_am',2,'qw-am')">2</button><button class="s-btn" onclick="rt('r_am',3,'qw-am')">3</button><button class="s-btn" onclick="rt('r_am',4,'qw-am')">4</button><button class="s-btn" onclick="rt('r_am',5,'qw-am')">5</button></div></div>
+    <div class="q" id="qw-ws"><div class="q-id">G.5 — Share of Wallet Analysis</div><div class="q-text">For your top 20 accounts, do you have a documented understanding of total addressable spend — and what percentage you currently capture?</div><div class="scale-ends"><span class="scale-end">No visibility into wallet share</span><span class="scale-end">Fully mapped and actively pursued</span></div><div class="scale-row" id="r_ws"><button class="s-btn" onclick="rt('r_ws',1,'qw-ws')">1</button><button class="s-btn" onclick="rt('r_ws',2,'qw-ws')">2</button><button class="s-btn" onclick="rt('r_ws',3,'qw-ws')">3</button><button class="s-btn" onclick="rt('r_ws',4,'qw-ws')">4</button><button class="s-btn" onclick="rt('r_ws',5,'qw-ws')">5</button></div></div>
+    <div class="err" id="err-4" style="display:none">Please answer all questions to continue.</div>
   </div>
-  <div class="nav-footer">
-    <div class="nav-completion"><div class="nav-bar"><div class="nav-bar-fill" id="nf-4"></div></div><div class="nav-pct" id="np-4">0%</div></div>
-    <div class="nav-btns"><button class="nav-back" onclick="goTo(3)">← Back</button><button class="nav-next" id="next-4" onclick="nextPage(4)" disabled>Continue →</button></div>
-  </div>
+  <div class="nav-footer"><div class="nav-left"><div class="nav-bar"><div class="nav-fill" id="nf-4"></div></div><div class="nav-pct" id="np-4">0%</div></div><div class="nav-btns"><button class="btn-back" onclick="goTo(3)">← Back</button><button class="btn-next" id="nx-4" onclick="np(4)" disabled>Continue →</button></div></div>
 </div>
 
-<!-- PAGE 5: SALES INFRASTRUCTURE -->
 <div class="page" id="page-5">
   <div class="section-page">
-    <div class="section-eyebrow"><div class="section-tag">Sales Infrastructure</div><div class="section-lens">Step 5 of 6</div></div>
+    <div class="section-eyebrow"><div class="section-tag">Sales Infrastructure</div><div class="section-step">Step 5 of 6</div></div>
     <div class="section-h">Systems, data, and <em>execution capability</em></div>
     <p class="section-sub">The infrastructure beneath the sales organization determines whether improvements stick. Without it, gains reverse when people change.</p>
 
-    <div class="q" id="q-crm-wrap">
-      <div class="q-id">S.1 — CRM Discipline & Data Quality</div>
-      <div class="q-text">How reliably is the CRM updated, and how much do you trust it for pipeline reviews and forecasting?</div>
-      <div class="scale-ends"><span class="scale-end">Reps barely use it</span><span class="scale-end">Single source of truth</span></div>
-      <div class="scale-row" id="r_crm">
-        <button class="s-btn" onclick="rate('r_crm',1,'q-crm-wrap')">1</button><button class="s-btn" onclick="rate('r_crm',2,'q-crm-wrap')">2</button><button class="s-btn" onclick="rate('r_crm',3,'q-crm-wrap')">3</button><button class="s-btn" onclick="rate('r_crm',4,'q-crm-wrap')">4</button><button class="s-btn" onclick="rate('r_crm',5,'q-crm-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-metrics-wrap">
-      <div class="q-id">S.2 — Sales Performance Metrics</div>
-      <div class="q-text">Which of these metrics are tracked and reviewed in formal sales leadership cadences? Select all that apply.</div>
-      <div class="chips" id="r_metrics">
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Pipeline coverage ratio</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Win rate by rep / segment</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Sales cycle duration</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Forecast accuracy</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Lead-to-opportunity conversion</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Net Dollar Retention</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Deal slippage reasons</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Activity metrics only</div>
-        <div class="chip" onclick="toggleChip(this,'q-metrics-wrap')">Revenue vs. quota</div>
-      </div>
-    </div>
-
-    <div class="q" id="q-process-wrap">
-      <div class="q-id">S.3 — Defined Sales Process</div>
-      <div class="q-text">Is there a documented, enforced sales process with stage definitions, exit criteria, and required milestones — or does each rep sell differently?</div>
-      <div class="scale-ends"><span class="scale-end">No defined process</span><span class="scale-end">Documented & consistently followed</span></div>
-      <div class="scale-row" id="r_process">
-        <button class="s-btn" onclick="rate('r_process',1,'q-process-wrap')">1</button><button class="s-btn" onclick="rate('r_process',2,'q-process-wrap')">2</button><button class="s-btn" onclick="rate('r_process',3,'q-process-wrap')">3</button><button class="s-btn" onclick="rate('r_process',4,'q-process-wrap')">4</button><button class="s-btn" onclick="rate('r_process',5,'q-process-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-onboarding-wrap">
-      <div class="q-id">S.4 — New Rep Ramp Time</div>
-      <div class="q-text">How long does it take a new sales rep to reach full quota productivity — and is that being systematically reduced?</div>
-      <select class="q-select" id="r_onboarding" onchange="markAnswered('q-onboarding-wrap'); updateNav()">
-        <option value="">Select answer</option>
-        <option>Under 3 months — fast ramp</option><option>3–6 months</option><option>6–9 months</option><option>9–12 months</option><option>12+ months</option><option>We don't track ramp time</option>
-      </select>
-    </div>
-
-    <div class="q" id="q-thesis-wrap">
-      <div class="q-id">S.5 — Growth Thesis Validation</div>
-      <div class="q-text">What evidence currently validates the revenue growth assumptions in your investment thesis — and what is the biggest execution risk to hitting those targets?</div>
-      <textarea class="q-ta" id="r_thesis" placeholder="e.g. Our thesis assumed 25% YoY growth through enterprise expansion. Currently tracking at 14%. Primary risk is our sales team lacks enterprise deal experience and our sales cycle has grown from 60 to 110 days..." oninput="markIfFilled('r_thesis','q-thesis-wrap'); updateNav()"></textarea>
-    </div>
-
-    <div class="err-block" id="err-5" style="display:none">Please answer all questions to continue.</div>
+    <div class="q" id="qw-crm"><div class="q-id">S.1 — CRM Discipline & Data Quality</div><div class="q-text">How reliably is the CRM updated — and how much do you trust it as the basis for pipeline reviews and forecasting?</div><div class="scale-ends"><span class="scale-end">Reps barely use it</span><span class="scale-end">Single source of truth</span></div><div class="scale-row" id="r_crm"><button class="s-btn" onclick="rt('r_crm',1,'qw-crm')">1</button><button class="s-btn" onclick="rt('r_crm',2,'qw-crm')">2</button><button class="s-btn" onclick="rt('r_crm',3,'qw-crm')">3</button><button class="s-btn" onclick="rt('r_crm',4,'qw-crm')">4</button><button class="s-btn" onclick="rt('r_crm',5,'qw-crm')">5</button></div></div>
+    <div class="q" id="qw-met"><div class="q-id">S.2 — Metrics Tracked in Sales Cadences</div><div class="q-text">Which of these are tracked and reviewed in formal sales leadership meetings? Select all that apply.</div><div class="chips" id="r_met"><div class="chip" onclick="tc(this,'qw-met')">Pipeline coverage ratio</div><div class="chip" onclick="tc(this,'qw-met')">Win rate by rep / segment</div><div class="chip" onclick="tc(this,'qw-met')">Sales cycle duration</div><div class="chip" onclick="tc(this,'qw-met')">Forecast accuracy</div><div class="chip" onclick="tc(this,'qw-met')">Lead-to-opportunity conversion</div><div class="chip" onclick="tc(this,'qw-met')">Net Dollar Retention</div><div class="chip" onclick="tc(this,'qw-met')">Deal slippage reasons</div><div class="chip" onclick="tc(this,'qw-met')">Activity metrics only</div><div class="chip" onclick="tc(this,'qw-met')">Revenue vs. quota only</div></div></div>
+    <div class="q" id="qw-proc"><div class="q-id">S.3 — Defined Sales Process</div><div class="q-text">Is there a documented, enforced sales process with stage definitions, exit criteria, and required milestones — or does each rep sell differently?</div><div class="scale-ends"><span class="scale-end">No defined process</span><span class="scale-end">Documented & consistently followed</span></div><div class="scale-row" id="r_proc"><button class="s-btn" onclick="rt('r_proc',1,'qw-proc')">1</button><button class="s-btn" onclick="rt('r_proc',2,'qw-proc')">2</button><button class="s-btn" onclick="rt('r_proc',3,'qw-proc')">3</button><button class="s-btn" onclick="rt('r_proc',4,'qw-proc')">4</button><button class="s-btn" onclick="rt('r_proc',5,'qw-proc')">5</button></div></div>
+    <div class="q" id="qw-ramp"><div class="q-id">S.4 — New Rep Ramp Time</div><div class="q-text">How long does a new sales rep take to reach full quota productivity?</div><select id="r_ramp" onchange="ma('qw-ramp');un()"><option value="">Select answer</option><option>Under 3 months — fast ramp</option><option>3–6 months</option><option>6–9 months</option><option>9–12 months</option><option>12+ months</option><option>We don't track ramp time</option></select></div>
+    <div class="q" id="qw-th"><div class="q-id">S.5 — Growth Thesis Validation</div><div class="q-text">What evidence currently validates the revenue growth assumptions in your investment thesis — and what is the biggest execution risk to hitting those targets?</div><textarea id="r_th" placeholder="e.g. Our thesis assumed 25% YoY growth through enterprise expansion. Currently tracking at 14%. Primary risk is the sales team lacks enterprise deal experience and the sales cycle has grown from 60 to 110 days..." oninput="mf('r_th','qw-th');un()"></textarea></div>
+    <div class="err" id="err-5" style="display:none">Please answer all questions to continue.</div>
   </div>
-  <div class="nav-footer">
-    <div class="nav-completion"><div class="nav-bar"><div class="nav-bar-fill" id="nf-5"></div></div><div class="nav-pct" id="np-5">0%</div></div>
-    <div class="nav-btns"><button class="nav-back" onclick="goTo(4)">← Back</button><button class="nav-next" id="next-5" onclick="nextPage(5)" disabled>Continue →</button></div>
-  </div>
+  <div class="nav-footer"><div class="nav-left"><div class="nav-bar"><div class="nav-fill" id="nf-5"></div></div><div class="nav-pct" id="np-5">0%</div></div><div class="nav-btns"><button class="btn-back" onclick="goTo(4)">← Back</button><button class="btn-next" id="nx-5" onclick="np(5)" disabled>Continue →</button></div></div>
 </div>
 
-<!-- PAGE 6: LEADERSHIP & THESIS -->
 <div class="page" id="page-6">
   <div class="section-page">
-    <div class="section-eyebrow"><div class="section-tag">Leadership Assessment</div><div class="section-lens">Step 6 of 6</div></div>
+    <div class="section-eyebrow"><div class="section-tag">Leadership Assessment</div><div class="section-step">Step 6 of 6</div></div>
     <div class="section-h">The questions PE firms <em>rarely ask</em></div>
     <p class="section-sub">These questions surface the gap between what the revenue model assumes and what the sales organization is currently capable of executing.</p>
 
-    <div class="q" id="q-salesleader-wrap">
-      <div class="q-id">L.1 — Sales Leadership Capability</div>
-      <div class="q-text">Is the current sales leader capable of building and scaling the systematic revenue execution this growth trajectory requires — or are they the right person for a different stage?</div>
-      <div class="q-hint">Be direct. This is the single question most operating partners avoid longest and regret not addressing sooner.</div>
-      <div class="scale-ends"><span class="scale-end">Wrong person for this stage</span><span class="scale-end">Fully capable of the task</span></div>
-      <div class="scale-row" id="r_salesleader">
-        <button class="s-btn" onclick="rate('r_salesleader',1,'q-salesleader-wrap')">1</button><button class="s-btn" onclick="rate('r_salesleader',2,'q-salesleader-wrap')">2</button><button class="s-btn" onclick="rate('r_salesleader',3,'q-salesleader-wrap')">3</button><button class="s-btn" onclick="rate('r_salesleader',4,'q-salesleader-wrap')">4</button><button class="s-btn" onclick="rate('r_salesleader',5,'q-salesleader-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-visibility-wrap">
-      <div class="q-id">L.2 — Operating Partner Revenue Visibility</div>
-      <div class="q-text">How clearly do you currently see into the sales execution at this portfolio company — with the same granularity you have into operational and financial metrics?</div>
-      <div class="scale-ends"><span class="scale-end">Board deck only</span><span class="scale-end">Deep pipeline & execution visibility</span></div>
-      <div class="scale-row" id="r_visibility">
-        <button class="s-btn" onclick="rate('r_visibility',1,'q-visibility-wrap')">1</button><button class="s-btn" onclick="rate('r_visibility',2,'q-visibility-wrap')">2</button><button class="s-btn" onclick="rate('r_visibility',3,'q-visibility-wrap')">3</button><button class="s-btn" onclick="rate('r_visibility',4,'q-visibility-wrap')">4</button><button class="s-btn" onclick="rate('r_visibility',5,'q-visibility-wrap')">5</button>
-      </div>
-    </div>
-
-    <div class="q" id="q-urgency-wrap">
-      <div class="q-id">L.3 — Hold Period Urgency</div>
-      <div class="q-text">Given your remaining hold period, how urgent is it to improve revenue execution — and what has prevented action to this point?</div>
-      <textarea class="q-ta" id="r_urgency" placeholder="e.g. We have 2.5 years left. The CEO believes the product will sell itself once we add two more features. We've been reluctant to challenge the sales leader because she came with the deal and has strong board relationships..." oninput="markIfFilled('r_urgency','q-urgency-wrap'); updateNav()"></textarea>
-    </div>
-
-    <div class="q" id="q-biggest-wrap">
-      <div class="q-id">L.4 — The Honest Assessment</div>
-      <div class="q-text">If the revenue growth thesis fails to materialize, what is most likely the root cause — and what would you wish you had done differently in the first 12 months?</div>
-      <textarea class="q-ta" id="r_biggest" placeholder="e.g. We'd probably say we knew the sales leader wasn't right for this stage but didn't move fast enough. And we never built the pipeline discipline needed to make the growth model work..." oninput="markIfFilled('r_biggest','q-biggest-wrap'); updateNav()"></textarea>
-    </div>
-
-    <div class="err-block" id="err-6" style="display:none">Please answer all questions to continue.</div>
+    <div class="q" id="qw-sl2"><div class="q-id">L.1 — Sales Leadership Capability</div><div class="q-text">Is the current sales leader capable of building and scaling the systematic revenue execution this growth trajectory requires — or are they the right person for a different stage?</div><div class="q-hint">Be direct. This is the single question most operating partners avoid longest and regret not addressing sooner.</div><div class="scale-ends"><span class="scale-end">Wrong person for this stage</span><span class="scale-end">Fully capable of the task</span></div><div class="scale-row" id="r_sl2"><button class="s-btn" onclick="rt('r_sl2',1,'qw-sl2')">1</button><button class="s-btn" onclick="rt('r_sl2',2,'qw-sl2')">2</button><button class="s-btn" onclick="rt('r_sl2',3,'qw-sl2')">3</button><button class="s-btn" onclick="rt('r_sl2',4,'qw-sl2')">4</button><button class="s-btn" onclick="rt('r_sl2',5,'qw-sl2')">5</button></div></div>
+    <div class="q" id="qw-vis"><div class="q-id">L.2 — Operating Partner Revenue Visibility</div><div class="q-text">How clearly do you see into sales execution at this portfolio company — with the same granularity you have into operational and financial metrics?</div><div class="scale-ends"><span class="scale-end">Board deck summary only</span><span class="scale-end">Deep pipeline & execution visibility</span></div><div class="scale-row" id="r_vis"><button class="s-btn" onclick="rt('r_vis',1,'qw-vis')">1</button><button class="s-btn" onclick="rt('r_vis',2,'qw-vis')">2</button><button class="s-btn" onclick="rt('r_vis',3,'qw-vis')">3</button><button class="s-btn" onclick="rt('r_vis',4,'qw-vis')">4</button><button class="s-btn" onclick="rt('r_vis',5,'qw-vis')">5</button></div></div>
+    <div class="q" id="qw-urg"><div class="q-id">L.3 — Hold Period Urgency</div><div class="q-text">Given your remaining hold period, how urgent is it to improve revenue execution — and what has prevented action to this point?</div><textarea id="r_urg" placeholder="e.g. We have 2.5 years left. The CEO believes the product will sell itself once we ship two more features. We've been reluctant to challenge the sales leader because she came with the deal..." oninput="mf('r_urg','qw-urg');un()"></textarea></div>
+    <div class="q" id="qw-big"><div class="q-id">L.4 — The Honest Assessment</div><div class="q-text">If the revenue growth thesis fails to materialize, what is most likely the root cause — and what would you wish you had done differently in year one?</div><textarea id="r_big" placeholder="e.g. We'd probably say we knew the sales leader wasn't right for this stage but didn't move fast enough. And we never built the pipeline discipline needed to make the growth model work..." oninput="mf('r_big','qw-big');un()"></textarea></div>
+    <div class="err" id="err-6" style="display:none">Please answer all questions to continue.</div>
   </div>
-  <div class="nav-footer">
-    <div class="nav-completion"><div class="nav-bar"><div class="nav-bar-fill" id="nf-6"></div></div><div class="nav-pct" id="np-6">0%</div></div>
-    <div class="nav-btns"><button class="nav-back" onclick="goTo(5)">← Back</button><button class="nav-next" id="next-6" onclick="nextPage(6)" disabled>Generate Assessment →</button></div>
-  </div>
+  <div class="nav-footer"><div class="nav-left"><div class="nav-bar"><div class="nav-fill" id="nf-6"></div></div><div class="nav-pct" id="np-6">0%</div></div><div class="nav-btns"><button class="btn-back" onclick="goTo(5)">← Back</button><button class="btn-next" id="nx-6" onclick="np(6)" disabled>Generate Assessment →</button></div></div>
 </div>
 
-<!-- LOADING -->
 <div class="page" id="loading-page">
-  <div class="loading-page">
-    <div class="loading-ring"></div>
-    <div class="loading-label">Portfolio Intelligence Engine</div>
-    <div class="loading-phases" id="loading-phases">
+  <div class="loading-pg">
+    <div class="ring"></div>
+    <div class="loading-lbl">Portfolio Intelligence Engine</div>
+    <div class="phases">
       <div class="lp" id="lp-0"><div class="lp-dot"></div>Analyzing CREATE pipeline systems</div>
-      <div class="lp" id="lp-1"><div class="lp-dot"></div>Benchmarking coverage ratio vs. growth target</div>
+      <div class="lp" id="lp-1"><div class="lp-dot"></div>Benchmarking coverage vs. growth target</div>
       <div class="lp" id="lp-2"><div class="lp-dot"></div>Evaluating WIN deal execution gaps</div>
       <div class="lp" id="lp-3"><div class="lp-dot"></div>Modeling win rate improvement impact</div>
-      <div class="lp" id="lp-4"><div class="lp-dot"></div>Assessing GROW customer expansion systems</div>
+      <div class="lp" id="lp-4"><div class="lp-dot"></div>Assessing GROW customer expansion</div>
       <div class="lp" id="lp-5"><div class="lp-dot"></div>Calculating NDR impact on exit valuation</div>
       <div class="lp" id="lp-6"><div class="lp-dot"></div>Evaluating sales infrastructure maturity</div>
       <div class="lp" id="lp-7"><div class="lp-dot"></div>Assessing leadership execution risk</div>
@@ -668,54 +333,37 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-he
       <div class="lp" id="lp-9"><div class="lp-dot"></div>Building 90 / 180-day acceleration roadmap</div>
       <div class="lp" id="lp-10"><div class="lp-dot"></div>Synthesizing portfolio intelligence brief</div>
     </div>
-    <div class="err-block" id="err-api" style="display:none;max-width:480px;margin-top:24px;text-align:left"></div>
-    <button class="nav-back" id="err-back" style="display:none;margin-top:14px" onclick="goTo(6)">← Back to assessment</button>
+    <div class="err" id="err-api" style="display:none;max-width:480px;margin-top:24px"></div>
+    <button class="btn-back" id="err-back" style="display:none;margin-top:16px" onclick="goTo(6)">← Back to assessment</button>
   </div>
 </div>
 
-<!-- REPORT -->
 <div class="page" id="report-page">
-  <div class="report-page">
-    <div class="report-header">
-      <div class="report-logo-row">
-        <div class="report-logo-mark">S7</div>
-        <div class="report-logo-text">Stage 7 Revenue Systems · Portfolio Sales Excellence Assessment</div>
-      </div>
-      <div class="report-kicker">Confidential · Operating Partner Intelligence Brief</div>
-      <div class="report-title" id="report-title">Portfolio Sales Excellence Report</div>
-      <div class="report-meta-row">
-        <div class="report-meta-item" id="report-date"></div>
-        <div class="report-meta-item" id="report-role"></div>
-        <div class="report-meta-item" id="report-hold"></div>
-      </div>
+  <div class="report-pg">
+    <div class="rpt-header">
+      <div class="rpt-s7"><span class="s7m">S7</span> Stage 7 Revenue Systems · Portfolio Sales Excellence Assessment</div>
+      <div class="rpt-kicker">Confidential · Operating Partner Intelligence Brief</div>
+      <div class="rpt-title" id="rpt-title">Portfolio Sales Excellence Report</div>
+      <div class="rpt-meta"><div class="rpt-meta-item" id="rpt-date"></div><div class="rpt-meta-item" id="rpt-role"></div><div class="rpt-meta-item" id="rpt-hold"></div></div>
     </div>
-
     <div class="irr-banner">
-      <div class="irr-banner-label">IRR Impact Assessment — CREATE. WIN. GROW.™</div>
-      <div class="irr-banner-headline" id="irr-headline">Analyzing...</div>
-      <div class="irr-banner-ctx" id="irr-ctx"></div>
-      <div class="irr-numbers" id="irr-numbers"></div>
+      <div class="irr-lbl">IRR Impact Assessment — CREATE. WIN. GROW.™</div>
+      <div class="irr-hl" id="irr-hl"></div>
+      <div class="irr-ctx" id="irr-ctx"></div>
+      <div class="irr-nums" id="irr-nums"></div>
     </div>
-
     <div class="cwg-grid" id="cwg-grid"></div>
-    <div class="overall-row" id="overall-row"></div>
-    <div class="benchmark-note" id="benchmark-note"></div>
+    <div class="ov-row" id="ov-row"></div>
+    <div class="bm-note" id="bm-note"></div>
     <div class="exec-note" id="exec-note"></div>
-
-    <div class="findings-section-label">Critical Findings — Ordered by IRR Impact</div>
-    <div id="findings-container"></div>
-
-    <div class="roadmap" id="roadmap-grid"></div>
-
+    <div class="findings-lbl">Critical Findings — Ordered by IRR Impact</div>
+    <div id="fc-container"></div>
+    <div class="rm-grid" id="rm-grid"></div>
     <div class="share-bar">
-      <div class="share-bar-left"><h3>Share this assessment</h3><p>Export for the board pack, operating review, or CEO conversation.</p></div>
-      <div class="share-btns">
-        <button class="share-btn" onclick="copyEmail()">Copy as Email</button>
-        <button class="share-btn" onclick="copySlack()">Copy for Slack</button>
-        <button class="share-btn primary" onclick="window.print()">Export PDF →</button>
-      </div>
+      <div class="sbl"><h3>Share this assessment</h3><p>Export for the board pack, operating review, or leadership conversation.</p></div>
+      <div class="sbtns"><button class="sbtn" onclick="copyEmail()">Copy as Email</button><button class="sbtn" onclick="copySlack()">Copy for Slack</button><button class="sbtn p" onclick="window.print()">Export PDF →</button></div>
     </div>
-    <div style="text-align:center;margin-top:24px"><button class="nav-back" onclick="location.reload()">New Assessment</button></div>
+    <div style="text-align:center;margin-top:28px"><button class="btn-back" onclick="location.reload()">New Assessment</button></div>
   </div>
 </div>
 
@@ -723,357 +371,44 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-he
 <div class="toast" id="toast"></div>
 
 <script>
-let currentPage = 0;
-const scores = {};
-const answered = new Set();
-
-const PAGE_REQ = {
-  1: () => ['co_name','pe_role','co_revenue','co_type','hold_period','growth_target'].every(id => { const el=document.getElementById(id); return el && el.value.trim(); }),
-  2: () => ['q-coverage-wrap','q-salescycle-wrap','q-pipelineq-wrap','q-territory-wrap'].every(id => answered.has(id)),
-  3: () => ['q-winrate-wrap','q-forecast-wrap','q-salesmgmt-wrap','q-differentiation-wrap'].every(id => answered.has(id)),
-  4: () => ['q-ndr-wrap','q-churnpattern-wrap','q-multiproduct-wrap','q-accountmgmt-wrap','q-wallet-wrap'].every(id => answered.has(id)),
-  5: () => ['q-crm-wrap','q-process-wrap','q-onboarding-wrap'].every(id => answered.has(id)),
-  6: () => ['q-salesleader-wrap','q-visibility-wrap'].every(id => answered.has(id)),
-};
-
-const PAGE_QS = {
-  1: ['co_name','pe_role','co_revenue','co_type','hold_period','growth_target'],
-  2: ['q-coverage-wrap','q-leadconv-wrap','q-salescycle-wrap','q-pipelineq-wrap','q-territory-wrap'],
-  3: ['q-winrate-wrap','q-forecast-wrap','q-slippage-wrap','q-nodecision-wrap','q-salesmgmt-wrap','q-differentiation-wrap'],
-  4: ['q-ndr-wrap','q-churnpattern-wrap','q-multiproduct-wrap','q-accountmgmt-wrap','q-wallet-wrap'],
-  5: ['q-crm-wrap','q-metrics-wrap','q-process-wrap','q-onboarding-wrap','q-thesis-wrap'],
-  6: ['q-salesleader-wrap','q-visibility-wrap','q-urgency-wrap','q-biggest-wrap'],
-};
-
-const PAGE_TOTAL = { 1:6, 2:5, 3:6, 4:5, 5:5, 6:4 };
-
-function getPageFilled(p) {
-  if (p === 1) return PAGE_QS[1].filter(id => { const el=document.getElementById(id); return el && el.value.trim(); }).length;
-  return (PAGE_QS[p] || []).filter(id => answered.has(id)).length;
-}
-
-function updateNav() {
-  const p = currentPage;
-  if (p < 1 || p > 6) return;
-  const pct = Math.min(100, Math.round(getPageFilled(p) / PAGE_TOTAL[p] * 100));
-  const f = document.getElementById(`nf-${p}`); if (f) f.style.width = pct + '%';
-  const pe = document.getElementById(`np-${p}`); if (pe) pe.textContent = pct + '%';
-  const btn = document.getElementById(`next-${p}`); if (btn) btn.disabled = !(PAGE_REQ[p] ? PAGE_REQ[p]() : true);
-  updateDots();
-}
-
-function updateDots() {
-  const c = document.getElementById('topbar-dots'); if (!c) return;
-  c.innerHTML = '';
-  for (let i = 1; i <= 6; i++) {
-    const d = document.createElement('div'); d.className = 'tp-dot';
-    if (i < currentPage || getPageFilled(i) >= PAGE_TOTAL[i]) d.classList.add('done');
-    else if (i === currentPage) d.classList.add('active');
-    c.appendChild(d);
-  }
-  const r = document.getElementById('topbar-right');
-  if (r) r.textContent = (currentPage >= 1 && currentPage <= 6) ? `Step ${currentPage} of 6` : 'Portfolio Diagnostic';
-}
-
-function goTo(p) {
-  const pages = ['page-0','page-1','page-2','page-3','page-4','page-5','page-6','loading-page','report-page'];
-  pages.forEach(id => document.getElementById(id)?.classList.remove('active'));
-  if (p === 7) document.getElementById('loading-page')?.classList.add('active');
-  else if (p === 8) document.getElementById('report-page')?.classList.add('active');
-  else document.getElementById(`page-${p}`)?.classList.add('active');
-  currentPage = p; window.scrollTo(0,0); updateDots(); updateNav();
-}
-
-function nextPage(p) {
-  const err = document.getElementById(`err-${p}`); if (err) err.style.display = 'none';
-  if (PAGE_REQ[p] && !PAGE_REQ[p]()) { if (err) err.style.display = 'block'; return; }
-  if (p === 6) runAnalysis(); else goTo(p + 1);
-}
-
-function rate(id, val, wrapId) {
-  scores[id] = val;
-  document.querySelectorAll(`#${id} .s-btn`).forEach((b,i) => b.classList.toggle('sel', i+1===val));
-  if (wrapId) { answered.add(wrapId); document.getElementById(wrapId)?.classList.add('answered'); }
-  updateNav();
-}
-function markAnswered(wrapId) { answered.add(wrapId); document.getElementById(wrapId)?.classList.add('answered'); updateNav(); }
-function markIfFilled(inputId, wrapId) {
-  const el = document.getElementById(inputId);
-  if (el && el.value.trim().length > 15) { answered.add(wrapId); document.getElementById(wrapId)?.classList.add('answered'); }
-  else { answered.delete(wrapId); document.getElementById(wrapId)?.classList.remove('answered'); }
-}
-function markIfNumeric(inputId, wrapId) {
-  const el = document.getElementById(inputId);
-  if (el && el.value.trim() !== '' && !isNaN(parseFloat(el.value))) { answered.add(wrapId); document.getElementById(wrapId)?.classList.add('answered'); }
-  else { answered.delete(wrapId); document.getElementById(wrapId)?.classList.remove('answered'); }
-}
-function toggleChip(el, wrapId) {
-  el.classList.toggle('sel');
-  const chips = el.closest('.chips');
-  if (chips && chips.querySelectorAll('.chip.sel').length > 0) { answered.add(wrapId); document.getElementById(wrapId)?.classList.add('answered'); }
-  updateNav();
-}
-
-function updateCoverageBM() {
-  const el = document.getElementById('r_coverage'); const bm = document.getElementById('coverage-bm-compare');
-  if (!el || !bm || el.value === '') { bm.innerHTML=''; return; }
-  const v = parseFloat(el.value);
-  const color = v >= 4.5 ? '#22c55e' : v >= 3.5 ? '#eab308' : '#ef4444';
-  const label = v >= 4.5 ? '✓ Best-in-class' : v >= 3.5 ? '⚠ Meets minimum' : '✗ Below benchmark (3.5X minimum)';
-  bm.innerHTML = `<span style="color:${color}">${label}</span> — your current: <span class="bm-val">${v}X</span>`;
-}
-function updateWinrateBM() {
-  const el = document.getElementById('r_winrate'); const bm = document.getElementById('winrate-bm-compare');
-  if (!el || !bm || el.value === '') { bm.innerHTML=''; return; }
-  const v = parseFloat(el.value);
-  const color = v >= 40 ? '#22c55e' : v >= 25 ? '#eab308' : '#ef4444';
-  const label = v >= 40 ? '✓ Best-in-class' : v >= 25 ? '⚠ Industry average' : '✗ Below average (industry: 20–25%)';
-  bm.innerHTML = `<span style="color:${color}">${label}</span> — your current: <span class="bm-val">${v}%</span>`;
-}
-function updateNDRBM() {
-  const el = document.getElementById('r_ndr'); const bm = document.getElementById('ndr-bm-compare');
-  if (!el || !bm || el.value === '') { bm.innerHTML=''; return; }
-  const v = parseFloat(el.value);
-  const color = v >= 120 ? '#22c55e' : v >= 100 ? '#eab308' : '#ef4444';
-  const label = v >= 120 ? '✓ Best-in-class' : v >= 100 ? '⚠ Acceptable — room to grow' : '✗ Critical — below replacement threshold';
-  bm.innerHTML = `<span style="color:${color}">${label}</span> — your current: <span class="bm-val">${v}%</span>`;
-}
-
-function gather() {
-  const g = id => { const el=document.getElementById(id); return el ? el.value.trim() : ''; };
-  const gc = id => [...(document.getElementById(id)?.querySelectorAll('.chip.sel') || [])].map(c => c.textContent.trim());
-  return {
-    co_name: g('co_name'), pe_role: g('pe_role'), co_revenue: g('co_revenue'),
-    co_type: g('co_type'), hold_period: g('hold_period'), growth_target: g('growth_target'),
-    co_industry: g('co_industry'), sales_team: g('sales_team'),
-    coverage: g('r_coverage'), leadconv: g('r_leadconv'), salescycle: g('r_salescycle'),
-    pipelineq: scores['r_pipelineq'], territory: scores['r_territory'],
-    winrate: g('r_winrate'), forecast: g('r_forecast'), slippage: gc('r_slippage'),
-    nodecision: g('r_nodecision'), salesmgmt: scores['r_salesmgmt'], differentiation: scores['r_differentiation'],
-    ndr: g('r_ndr'), churnpattern: scores['r_churnpattern'], multiproduct: g('r_multiproduct'),
-    accountmgmt: scores['r_accountmgmt'], wallet: scores['r_wallet'],
-    crm: scores['r_crm'], metrics: gc('r_metrics'), process: scores['r_process'],
-    onboarding: g('r_onboarding'), thesis: g('r_thesis'),
-    salesleader: scores['r_salesleader'], visibility: scores['r_visibility'],
-    urgency: g('r_urgency'), biggest: g('r_biggest'),
-  };
-}
-
-function calcIRRImpact(d) {
-  let bps = 0;
-  const coverage = parseFloat(d.coverage) || 0;
-  if (coverage < 2) bps += 180; else if (coverage < 3.5) bps += 100; else if (coverage < 4.5) bps += 40;
-  const winrate = parseFloat(d.winrate) || 0;
-  if (winrate < 20) bps += 200; else if (winrate < 30) bps += 120; else if (winrate < 40) bps += 60;
-  const ndr = parseFloat(d.ndr) || 100;
-  if (ndr < 90) bps += 180; else if (ndr < 100) bps += 100; else if (ndr < 110) bps += 50;
-  if (d.pipelineq && d.pipelineq <= 2) bps += 60;
-  if (d.salesmgmt && d.salesmgmt <= 2) bps += 80;
-  if (d.salesleader && d.salesleader <= 2) bps += 120;
-  if (d.crm && d.crm <= 2) bps += 40;
-  if (d.process && d.process <= 2) bps += 60;
-  return Math.min(bps, 620);
-}
-
-let phaseInterval = null;
-function animateLoading() {
-  let i = 0; const items = document.querySelectorAll('.lp');
-  phaseInterval = setInterval(() => {
-    if (i > 0 && items[i-1]) { items[i-1].classList.remove('lit'); items[i-1].classList.add('done'); }
-    if (i < items.length) { items[i].classList.add('lit'); i++; } else clearInterval(phaseInterval);
-  }, 1100);
-}
-
-async function runAnalysis() {
-  goTo(7); animateLoading();
-  const d = gather(); const irrBps = calcIRRImpact(d);
-
-  const prompt = `You are a senior PE operating partner evaluating a portfolio company's sales execution through the S7 CREATE. WIN. GROW. framework. Analyze this assessment data and return ONLY valid JSON — no markdown, no preamble, nothing outside the JSON object.
-
-PORTFOLIO COMPANY CONTEXT:
-- Company: ${d.co_name} | Role: ${d.pe_role} | Revenue: ${d.co_revenue} | Type: ${d.co_type}
-- Industry: ${d.co_industry||'N/A'} | Hold Remaining: ${d.hold_period} | Growth Target: ${d.growth_target}
-- Sales Team: ${d.sales_team||'N/A'}
-
-LENS 1 — CREATE (Pipeline Generation):
-- Pipeline coverage ratio: ${d.coverage||'N/A'}X (benchmark: 3.5X minimum, best-in-class: 4.5X)
-- Lead-to-opportunity conversion: ${d.leadconv||'N/A'}% (benchmark: 15-25%, best-in-class: 35%+)
-- Sales cycle duration: ${d.salescycle||'N/A'}
-- Pipeline quality score (1=stale, 5=rigorous): ${d.pipelineq??'N/A'}
-- Territory design score (1=rep-driven, 5=data-driven): ${d.territory??'N/A'}
-
-LENS 2 — WIN (Deal Execution):
-- Competitive win rate: ${d.winrate||'N/A'}% (benchmark: 20-25% avg, best-in-class: 40%+)
-- Forecast accuracy: ${d.forecast||'N/A'}
-- Deal slippage primary causes: ${d.slippage.join(', ')||'N/A'}
-- No-decision rate: ${d.nodecision||'N/A'}
-- Sales management process (1=ad hoc, 5=structured): ${d.salesmgmt??'N/A'}
-- Competitive differentiation articulation (1=weak, 5=crisp): ${d.differentiation??'N/A'}
-
-LENS 3 — GROW (Customer Expansion):
-- Net Dollar Retention: ${d.ndr||'N/A'}% (benchmark: 90% floor, growth-grade: 100-110%, best-in-class: 120%+)
-- Churn pattern visibility (1=none, 5=full): ${d.churnpattern??'N/A'}
-- Multi-product penetration: ${d.multiproduct||'N/A'}
-- Account management maturity (1=reactive, 5=systematic): ${d.accountmgmt??'N/A'}
-- Share of wallet analysis (1=no visibility, 5=fully mapped): ${d.wallet??'N/A'}
-
-SALES INFRASTRUCTURE:
-- CRM discipline (1=unused, 5=single source of truth): ${d.crm??'N/A'}
-- Metrics tracked in cadences: ${d.metrics.join(', ')||'none listed'}
-- Sales process maturity (1=none, 5=documented+enforced): ${d.process??'N/A'}
-- New rep ramp time: ${d.onboarding||'N/A'}
-- Growth thesis validation: ${d.thesis||'N/A'}
-
-LEADERSHIP:
-- Sales leader capability for this stage (1=wrong person, 5=fully capable): ${d.salesleader??'N/A'}
-- Operating partner revenue visibility (1=board deck only, 5=deep): ${d.visibility??'N/A'}
-- Hold period urgency: ${d.urgency||'N/A'}
-- Honest assessment: ${d.biggest||'N/A'}
-
-PRE-CALCULATED IRR IMPACT: ${irrBps} basis points identified
-
-Return exactly this JSON:
-{
-  "create_score": <0-100>,
-  "win_score": <0-100>,
-  "grow_score": <0-100>,
-  "infrastructure_score": <0-100>,
-  "overall_score": <0-100>,
-  "irr_basis_points": <integer, total estimated IRR improvement available>,
-  "irr_headline": "<one sharp sentence: the most important IRR insight from this assessment>",
-  "irr_context": "<2 sentences on what's driving the IRR opportunity and the hold period urgency>",
-  "create_benchmark": "<one sentence comparing their CREATE metrics to benchmarks>",
-  "win_benchmark": "<one sentence comparing their WIN metrics to benchmarks>",
-  "grow_benchmark": "<one sentence comparing their GROW metrics to benchmarks>",
-  "overall_benchmark": "<one sentence comparing overall score to peer PE portfolio companies>",
-  "exec_summary": "<3 direct sentences for the operating partner — the most important things to act on now>",
-  "findings": [
-    {
-      "lens": "<CREATE|WIN|GROW|Infrastructure|Leadership>",
-      "title": "<6-9 word sharp finding title>",
-      "severity": "<Critical|Moderate|Opportunity>",
-      "icon": "<single emoji>",
-      "irr_impact": "<e.g. ~80-120 bps>",
-      "analysis": "<3-4 sentences tied specifically to their answers and benchmarks>",
-      "actions": ["<specific 90-day action with owner>", "<action 2>", "<action 3>"]
-    }
-  ],
-  "roadmap_90": ["<priority action 1>", "<priority action 2>", "<priority action 3>", "<priority action 4>"],
-  "roadmap_180": ["<priority action 1>", "<priority action 2>", "<priority action 3>", "<priority action 4>"],
-  "email_summary": "<200 word plain text summary for board pack or operating review — no markdown>",
-  "slack_summary": "<3-4 line plain text message with top findings for quick sharing>"
-}
-
-Generate 5-7 findings ordered by IRR impact (Critical first). Every finding must reference their specific numbers and benchmarks — never generic advice.`;
-
-  try {
-    const res = await fetch('/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt }),
-    });
-    const json = await res.json();
-    if (!res.ok) throw new Error(json.error + (json.detail ? ' — ' + json.detail : ''));
-    let raw = (json.content || '').replace(/```json|```/g,'').trim();
-    const fb = raw.indexOf('{'), lb = raw.lastIndexOf('}');
-    if (fb > -1 && lb > -1) raw = raw.slice(fb, lb+1);
-    const report = JSON.parse(raw);
-    clearInterval(phaseInterval);
-    renderReport(report, d, irrBps);
-  } catch(err) {
-    clearInterval(phaseInterval);
-    const e = document.getElementById('err-api'); e.style.display = 'block'; e.textContent = 'Analysis failed: ' + (err.message || 'Unknown error. Please try again.');
-    document.getElementById('err-back').style.display = 'inline-block';
-  }
-}
-
-function renderReport(r, d, irrBps) {
-  document.getElementById('report-title').textContent = `${d.co_name} — Sales Excellence Assessment`;
-  document.getElementById('report-date').innerHTML = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  document.getElementById('report-role').innerHTML = `<span>${d.pe_role}</span>`;
-  document.getElementById('report-hold').innerHTML = `Hold remaining: <span>${d.hold_period}</span>`;
-
-  document.getElementById('irr-headline').textContent = r.irr_headline || '';
-  document.getElementById('irr-ctx').textContent = r.irr_context || '';
-  document.getElementById('irr-numbers').innerHTML = `
-    <div class="irr-num"><div class="irr-val gold">${r.irr_basis_points||irrBps} bps</div><div class="irr-val-label">IRR Improvement Available</div></div>
-    <div class="irr-num"><div class="irr-val">${r.create_score??'—'}</div><div class="irr-val-label">CREATE Score</div></div>
-    <div class="irr-num"><div class="irr-val">${r.win_score??'—'}</div><div class="irr-val-label">WIN Score</div></div>
-    <div class="irr-num"><div class="irr-val">${r.grow_score??'—'}</div><div class="irr-val-label">GROW Score</div></div>`;
-
-  document.getElementById('cwg-grid').innerHTML = `
-    <div class="cwg-cell hero">
-      <div class="cwg-label">Lens 01</div>
-      <div class="cwg-lens">CREATE.</div>
-      <div class="cwg-score">${r.create_score??'—'}/100</div>
-      <div class="cwg-bm">${r.create_benchmark||'Pipeline generation systems'}</div>
-      <div class="cwg-bar"><div class="cwg-bar-fill" style="width:${r.create_score||0}%"></div></div>
-    </div>
-    <div class="cwg-cell">
-      <div class="cwg-label">Lens 02</div>
-      <div class="cwg-lens">WIN.</div>
-      <div class="cwg-score">${r.win_score??'—'}/100</div>
-      <div class="cwg-bm">${r.win_benchmark||'Deal execution effectiveness'}</div>
-      <div class="cwg-bar"><div class="cwg-bar-fill" style="width:${r.win_score||0}%"></div></div>
-    </div>
-    <div class="cwg-cell">
-      <div class="cwg-label">Lens 03</div>
-      <div class="cwg-lens">GROW.</div>
-      <div class="cwg-score">${r.grow_score??'—'}/100</div>
-      <div class="cwg-bm">${r.grow_benchmark||'Customer expansion systems'}</div>
-      <div class="cwg-bar"><div class="cwg-bar-fill" style="width:${r.grow_score||0}%"></div></div>
-    </div>`;
-
-  document.getElementById('overall-row').innerHTML = `
-    <div class="ov-cell hero"><div class="ov-val">${r.overall_score??'—'}</div><div class="ov-lbl">Overall Score</div></div>
-    <div class="ov-cell"><div class="ov-val">${r.infrastructure_score??'—'}</div><div class="ov-lbl">Infrastructure</div><div class="ov-bar"><div class="ov-bar-fill" style="width:${r.infrastructure_score||0}%"></div></div></div>
-    <div class="ov-cell"><div class="ov-val">${r.irr_basis_points||irrBps}</div><div class="ov-lbl">Basis Points Available</div></div>
-    <div class="ov-cell"><div class="ov-val">${d.hold_period.split(' ')[0]}</div><div class="ov-lbl">Years Hold Remaining</div></div>`;
-
-  document.getElementById('benchmark-note').innerHTML = `<div class="bm-note-dot"></div><div class="bm-note-text">${r.overall_benchmark||''}</div>`;
-  document.getElementById('exec-note').innerHTML = `<div class="exec-note-label">Operating Partner Summary</div><div class="exec-note-text">${r.exec_summary||''}</div>`;
-
-  const fc = document.getElementById('findings-container'); fc.innerHTML = '';
-  (r.findings||[]).forEach((f,idx) => {
-    const sc = f.severity==='Critical'?'sev-critical':f.severity==='Moderate'?'sev-moderate':'sev-opportunity';
-    const card = document.createElement('div'); card.className = 'finding-card' + (idx < 2 ? ' open' : '');
-    card.innerHTML = `
-      <div class="finding-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="finding-icon">${f.icon||'●'}</div>
-        <div class="finding-title-block">
-          <div class="finding-lens">${f.lens} · ${f.irr_impact||''}</div>
-          <div class="finding-title">${f.title}</div>
-        </div>
-        <div class="sev-badge ${sc}">${f.severity}</div>
-        <div class="finding-chevron">▾</div>
-      </div>
-      <div class="finding-body">
-        <div class="finding-analysis">${f.analysis}</div>
-        <div class="actions-label">90-Day Actions</div>
-        <div class="action-list">${(f.actions||[]).map(a=>`<div class="action-item"><div class="action-arrow">→</div><div>${a}</div></div>`).join('')}</div>
-      </div>`;
-    fc.appendChild(card);
-  });
-
-  document.getElementById('roadmap-grid').innerHTML = `
-    <div class="roadmap-block">
-      <div class="roadmap-label">90-Day Revenue Acceleration Roadmap</div>
-      <div class="roadmap-items">${(r.roadmap_90||[]).map(i=>`<div class="roadmap-item">${i}</div>`).join('')}</div>
-    </div>
-    <div class="roadmap-block">
-      <div class="roadmap-label">180-Day Revenue Acceleration Roadmap</div>
-      <div class="roadmap-items">${(r.roadmap_180||[]).map(i=>`<div class="roadmap-item">${i}</div>`).join('')}</div>
-    </div>`;
-
-  window._reportData = { r, d };
-  goTo(8);
-}
-
-function showToast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
-function copyEmail() { const r=window._reportData?.r, d=window._reportData?.d; if(!r)return; navigator.clipboard.writeText(`Subject: ${d.co_name} — Portfolio Sales Excellence Assessment\n\n${r.email_summary||r.exec_summary}`).then(()=>showToast('Copied to clipboard')); }
-function copySlack() { const r=window._reportData?.r; if(!r)return; navigator.clipboard.writeText(r.slack_summary||r.exec_summary).then(()=>showToast('Slack message copied')); }
-
-updateDots();
+let cp=0; const sc={}; const an=new Set();
+const REQ={1:()=>['co_name','pe_role','co_rev','co_type','hold','g_target'].every(id=>{const e=document.getElementById(id);return e&&e.value.trim();}),2:()=>['qw-cov','qw-sc','qw-pq','qw-ter'].every(id=>an.has(id)),3:()=>['qw-wr','qw-fc','qw-sm','qw-df'].every(id=>an.has(id)),4:()=>['qw-ndr','qw-chp','qw-mp','qw-am','qw-ws'].every(id=>an.has(id)),5:()=>['qw-crm','qw-proc','qw-ramp'].every(id=>an.has(id)),6:()=>['qw-sl2','qw-vis'].every(id=>an.has(id))};
+const PQS={1:['co_name','pe_role','co_rev','co_type','hold','g_target'],2:['qw-cov','qw-lc','qw-sc','qw-pq','qw-ter'],3:['qw-wr','qw-fc','qw-sl','qw-nd','qw-sm','qw-df'],4:['qw-ndr','qw-chp','qw-mp','qw-am','qw-ws'],5:['qw-crm','qw-met','qw-proc','qw-ramp','qw-th'],6:['qw-sl2','qw-vis','qw-urg','qw-big']};
+const PT={1:6,2:5,3:6,4:5,5:5,6:4};
+function pf(p){if(p===1)return PQS[1].filter(id=>{const e=document.getElementById(id);return e&&e.value.trim();}).length;return(PQS[p]||[]).filter(id=>an.has(id)).length;}
+function un(){const p=cp;if(p<1||p>6)return;const pct=Math.min(100,Math.round(pf(p)/PT[p]*100));const f=document.getElementById('nf-'+p);if(f)f.style.width=pct+'%';const pe=document.getElementById('np-'+p);if(pe)pe.textContent=pct+'%';const b=document.getElementById('nx-'+p);if(b)b.disabled=!(REQ[p]?REQ[p]():true);ud();}
+function ud(){const c=document.getElementById('dots');if(!c)return;c.innerHTML='';for(let i=1;i<=6;i++){const d=document.createElement('div');d.className='tp-dot';if(i<cp||pf(i)>=PT[i])d.classList.add('done');else if(i===cp)d.classList.add('active');c.appendChild(d);}const r=document.getElementById('tright');if(r)r.textContent=cp>=1&&cp<=6?'Step '+cp+' of 6':'CREATE. WIN. GROW.™';}
+function goTo(p){const all=['page-0','page-1','page-2','page-3','page-4','page-5','page-6','loading-page','report-page'];all.forEach(id=>document.getElementById(id)?.classList.remove('active'));if(p===7)document.getElementById('loading-page')?.classList.add('active');else if(p===8)document.getElementById('report-page')?.classList.add('active');else document.getElementById('page-'+p)?.classList.add('active');cp=p;window.scrollTo(0,0);ud();un();}
+function np(p){const e=document.getElementById('err-'+p);if(e)e.style.display='none';if(REQ[p]&&!REQ[p]()){if(e)e.style.display='block';return;}if(p===6)run();else goTo(p+1);}
+function rt(id,val,wid){sc[id]=val;document.querySelectorAll('#'+id+' .s-btn').forEach((b,i)=>b.classList.toggle('sel',i+1===val));if(wid){an.add(wid);document.getElementById(wid)?.classList.add('answered');}un();}
+function ma(wid){an.add(wid);document.getElementById(wid)?.classList.add('answered');un();}
+function mf(inp,wid){const e=document.getElementById(inp);if(e&&e.value.trim().length>15){an.add(wid);document.getElementById(wid)?.classList.add('answered');}else{an.delete(wid);document.getElementById(wid)?.classList.remove('answered');}un();}
+function mNum(inp,wid){const e=document.getElementById(inp);if(e&&e.value.trim()!==''&&!isNaN(parseFloat(e.value))){an.add(wid);document.getElementById(wid)?.classList.add('answered');}else{an.delete(wid);document.getElementById(wid)?.classList.remove('answered');}un();}
+function tc(el,wid){el.classList.toggle('sel');const g=el.closest('.chips');if(g&&g.querySelectorAll('.chip.sel').length>0){an.add(wid);document.getElementById(wid)?.classList.add('answered');}un();}
+function bmCov(){const e=document.getElementById('r_cov');const b=document.getElementById('bm-cov');if(!e||!b||e.value===''){b.innerHTML='';return;}const v=parseFloat(e.value);const col=v>=4.5?'var(--green)':v>=3.5?'var(--amber)':'var(--red)';const lbl=v>=4.5?'✓ Best-in-class':v>=3.5?'⚠ Meets minimum threshold':'✗ Below benchmark — 3.5X minimum required';b.innerHTML='<span style="color:'+col+'">'+lbl+'</span> · your current: <span style="color:var(--amber)">'+v+'X</span>';}
+function bmWR(){const e=document.getElementById('r_wr');const b=document.getElementById('bm-wr');if(!e||!b||e.value===''){b.innerHTML='';return;}const v=parseFloat(e.value);const col=v>=40?'var(--green)':v>=25?'var(--amber)':'var(--red)';const lbl=v>=40?'✓ Best-in-class':v>=25?'⚠ Industry average range':'✗ Below industry average (20–25%)';b.innerHTML='<span style="color:'+col+'">'+lbl+'</span> · your current: <span style="color:var(--amber)">'+v+'%</span>';}
+function bmNDR(){const e=document.getElementById('r_ndr');const b=document.getElementById('bm-ndr');if(!e||!b||e.value===''){b.innerHTML='';return;}const v=parseFloat(e.value);const col=v>=120?'var(--green)':v>=100?'var(--amber)':'var(--red)';const lbl=v>=120?'✓ Best-in-class':v>=100?'⚠ Acceptable — room to grow':'✗ Critical — below replacement threshold';b.innerHTML='<span style="color:'+col+'">'+lbl+'</span> · your current: <span style="color:var(--amber)">'+v+'%</span>';}
+function gv(id){const e=document.getElementById(id);return e?e.value.trim():'';}
+function gc(id){return[...(document.getElementById(id)?.querySelectorAll('.chip.sel')||[])].map(c=>c.textContent.trim());}
+function gather(){return{co_name:gv('co_name'),pe_role:gv('pe_role'),co_rev:gv('co_rev'),co_type:gv('co_type'),hold:gv('hold'),g_target:gv('g_target'),industry:gv('industry'),team_sz:gv('team_sz'),cov:gv('r_cov'),lc:gv('r_lc'),sc2:gv('r_sc'),pq:sc['r_pq'],ter:sc['r_ter'],wr:gv('r_wr'),fc:gv('r_fc'),sl:gc('r_sl'),nd:gv('r_nd'),sm:sc['r_sm'],df:sc['r_df'],ndr:gv('r_ndr'),chp:sc['r_chp'],mp:gv('r_mp'),am:sc['r_am'],ws:sc['r_ws'],crm:sc['r_crm'],met:gc('r_met'),proc:sc['r_proc'],ramp:gv('r_ramp'),th:gv('r_th'),sl2:sc['r_sl2'],vis:sc['r_vis'],urg:gv('r_urg'),big:gv('r_big')};}
+function calcIRR(d){let b=0;const cov=parseFloat(d.cov)||0;if(cov<2)b+=180;else if(cov<3.5)b+=100;else if(cov<4.5)b+=40;const wr=parseFloat(d.wr)||0;if(wr<20)b+=200;else if(wr<30)b+=120;else if(wr<40)b+=60;const ndr=parseFloat(d.ndr)||100;if(ndr<90)b+=180;else if(ndr<100)b+=100;else if(ndr<110)b+=50;if(d.pq&&d.pq<=2)b+=60;if(d.sm&&d.sm<=2)b+=80;if(d.sl2&&d.sl2<=2)b+=120;if(d.crm&&d.crm<=2)b+=40;if(d.proc&&d.proc<=2)b+=60;return Math.min(b,620);}
+let phInt=null;
+function animLoad(){let i=0;const items=document.querySelectorAll('.lp');phInt=setInterval(()=>{if(i>0&&items[i-1]){items[i-1].classList.remove('lit');items[i-1].classList.add('done');}if(i<items.length){items[i].classList.add('lit');i++;}else clearInterval(phInt);},1100);}
+async function run(){goTo(7);animLoad();const d=gather();const irr=calcIRR(d);const prompt=`You are a senior PE operating partner evaluating a portfolio company through the S7 CREATE. WIN. GROW. framework. Return ONLY valid JSON, no markdown, no preamble.\n\nCOMPANY: ${d.co_name} | Role: ${d.pe_role} | Revenue: ${d.co_rev} | Type: ${d.co_type} | Industry: ${d.industry||'N/A'} | Hold: ${d.hold} | Growth Target: ${d.g_target} | Team: ${d.team_sz||'N/A'}\nCREATE: coverage=${d.cov||'N/A'}X(bm:3.5min,4.5best) | lead_conv=${d.lc||'N/A'}%(bm:15-25,best:35+) | cycle=${d.sc2||'N/A'} | pipeline_quality(1=stale,5=rigorous)=${d.pq??'N/A'} | territory(1=rep,5=data)=${d.ter??'N/A'}\nWIN: win_rate=${d.wr||'N/A'}%(bm:20-25avg,40+best) | forecast=${d.fc||'N/A'} | slippage=${d.sl.join(',')||'N/A'} | no_decision=${d.nd||'N/A'} | sales_mgmt(1=adhoc,5=structured)=${d.sm??'N/A'} | differentiation(1=weak,5=crisp)=${d.df??'N/A'}\nGROW: NDR=${d.ndr||'N/A'}%(floor:90,grade:100-110,best:120+) | churn_visibility(1=none,5=full)=${d.chp??'N/A'} | multi_product=${d.mp||'N/A'} | acct_mgmt(1=reactive,5=systematic)=${d.am??'N/A'} | wallet_share(1=none,5=mapped)=${d.ws??'N/A'}\nINFRA: crm(1=unused,5=trusted)=${d.crm??'N/A'} | metrics_tracked=${d.met.join(',')||'none'} | sales_process(1=none,5=enforced)=${d.proc??'N/A'} | ramp=${d.ramp||'N/A'} | thesis=${d.th||'N/A'}\nLEADERSHIP: sales_leader(1=wrong,5=capable)=${d.sl2??'N/A'} | op_visibility(1=boarddeck,5=deep)=${d.vis??'N/A'} | urgency=${d.urg||'N/A'} | honest=${d.big||'N/A'}\nPRE-CALC IRR: ${irr} bps\n\nReturn this JSON exactly:\n{"create_score":<0-100>,"win_score":<0-100>,"grow_score":<0-100>,"infra_score":<0-100>,"overall_score":<0-100>,"irr_bps":<integer>,"irr_hl":"<one sharp sentence: most important IRR insight>","irr_ctx":"<2 sentences on what drives the opportunity and hold period urgency>","create_bm":"<one sentence comparing CREATE metrics to benchmarks>","win_bm":"<one sentence comparing WIN metrics to benchmarks>","grow_bm":"<one sentence comparing GROW metrics to benchmarks>","overall_bm":"<one sentence comparing overall to peer PE portfolio companies>","exec_summary":"<3 direct sentences — most important things to act on now>","findings":[{"lens":"<CREATE|WIN|GROW|Infrastructure|Leadership>","title":"<6-9 word sharp finding>","severity":"<Critical|Moderate|Opportunity>","icon":"<single emoji>","irr_impact":"<e.g. ~80-120 bps>","analysis":"<3-4 sentences tied specifically to their numbers and benchmarks>","actions":["<specific 90-day action with owner>","<action 2>","<action 3>"]}],"rm90":["<action 1>","<action 2>","<action 3>","<action 4>"],"rm180":["<action 1>","<action 2>","<action 3>","<action 4>"],"email_body":"<200 word plain text for board pack, no markdown>","slack_msg":"<3-4 line plain text with top findings>"}\n\nGenerate 5-7 findings ordered by IRR impact. Reference specific numbers and benchmarks — never generic advice.`;
+  try{const res=await fetch('/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});const json=await res.json();if(!res.ok)throw new Error(json.error+(json.detail?' — '+json.detail:''));let raw=(json.content||'').replace(/```json|```/g,'').trim();const fb=raw.indexOf('{'),lb=raw.lastIndexOf('}');if(fb>-1&&lb>-1)raw=raw.slice(fb,lb+1);const r=JSON.parse(raw);clearInterval(phInt);render(r,d,irr);}catch(err){clearInterval(phInt);const e=document.getElementById('err-api');e.style.display='block';e.textContent='Analysis failed: '+(err.message||'Unknown error. Please try again.');document.getElementById('err-back').style.display='inline-block';}}
+function render(r,d,irr){document.getElementById('rpt-title').textContent=d.co_name+' — Sales Excellence Assessment';document.getElementById('rpt-date').innerHTML=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});document.getElementById('rpt-role').innerHTML='<span>'+d.pe_role+'</span>';document.getElementById('rpt-hold').innerHTML='Hold remaining: <span>'+d.hold+'</span>';
+document.getElementById('irr-hl').textContent=r.irr_hl||'';document.getElementById('irr-ctx').textContent=r.irr_ctx||'';document.getElementById('irr-nums').innerHTML='<div class="irr-num"><div class="irr-val gold">'+(r.irr_bps||irr)+' bps</div><div class="irr-val-lbl">IRR Improvement Available</div></div><div class="irr-num"><div class="irr-val">'+(r.create_score??'—')+'/100</div><div class="irr-val-lbl">CREATE Score</div></div><div class="irr-num"><div class="irr-val">'+(r.win_score??'—')+'/100</div><div class="irr-val-lbl">WIN Score</div></div><div class="irr-num"><div class="irr-val">'+(r.grow_score??'—')+'/100</div><div class="irr-val-lbl">GROW Score</div></div>';
+document.getElementById('cwg-grid').innerHTML='<div class="cwg-cell hero"><div class="cwg-lbl">Lens 01</div><div class="cwg-lens">CREATE.</div><div class="cwg-score">'+(r.create_score??'—')+'/100</div><div class="cwg-bm">'+(r.create_bm||'')+'</div><div class="cwg-bar"><div class="cwg-bar-fill" style="width:'+(r.create_score||0)+'%"></div></div></div><div class="cwg-cell"><div class="cwg-lbl">Lens 02</div><div class="cwg-lens">WIN.</div><div class="cwg-score">'+(r.win_score??'—')+'/100</div><div class="cwg-bm">'+(r.win_bm||'')+'</div><div class="cwg-bar"><div class="cwg-bar-fill" style="width:'+(r.win_score||0)+'%"></div></div></div><div class="cwg-cell"><div class="cwg-lbl">Lens 03</div><div class="cwg-lens">GROW.</div><div class="cwg-score">'+(r.grow_score??'—')+'/100</div><div class="cwg-bm">'+(r.grow_bm||'')+'</div><div class="cwg-bar"><div class="cwg-bar-fill" style="width:'+(r.grow_score||0)+'%"></div></div></div>';
+document.getElementById('ov-row').innerHTML='<div class="ov-cell"><div class="ov-val">'+(r.overall_score??'—')+'</div><div class="ov-lbl">Overall Score</div></div><div class="ov-cell"><div class="ov-val">'+(r.infra_score??'—')+'</div><div class="ov-lbl">Infrastructure</div><div class="ov-bar"><div class="ov-bar-fill" style="width:'+(r.infra_score||0)+'%"></div></div></div><div class="ov-cell"><div class="ov-val" style="color:var(--amber)">'+(r.irr_bps||irr)+'</div><div class="ov-lbl">Basis Points Available</div></div><div class="ov-cell"><div class="ov-val">'+d.hold.split(' ')[0]+'</div><div class="ov-lbl">Yrs Hold Remaining</div></div>';
+document.getElementById('bm-note').innerHTML='<div class="bm-dot"></div><div class="bm-text">'+(r.overall_bm||'')+'</div>';
+document.getElementById('exec-note').innerHTML='<div class="exec-note-lbl">Operating Partner Summary</div><div class="exec-note-text">'+(r.exec_summary||'')+'</div>';
+const fc=document.getElementById('fc-container');fc.innerHTML='';(r.findings||[]).forEach((f,idx)=>{const s=f.severity==='Critical'?'c':f.severity==='Moderate'?'m':'o';const card=document.createElement('div');card.className='fc'+(idx<2?' open':'');card.innerHTML='<div class="fh" onclick="this.parentElement.classList.toggle(\'open\')"><div class="fi">'+f.icon+'</div><div class="ftb"><div class="fl">'+f.lens+' · '+f.irr_impact+'</div><div class="ft">'+f.title+'</div></div><div class="sev '+s+'">'+f.severity+'</div><div class="fchev">▾</div></div><div class="fb"><div class="fa">'+f.analysis+'</div><div class="al">90-Day Actions</div><div class="alist">'+(f.actions||[]).map(a=>'<div class="ai"><div class="arr">→</div><div>'+a+'</div></div>').join('')+'</div></div>';fc.appendChild(card);});
+document.getElementById('rm-grid').innerHTML='<div class="rmb"><div class="rm-lbl">90-Day Revenue Acceleration Roadmap</div><div class="rm-items">'+(r.rm90||[]).map(i=>'<div class="rm-item">'+i+'</div>').join('')+'</div></div><div class="rmb"><div class="rm-lbl">180-Day Revenue Acceleration Roadmap</div><div class="rm-items">'+(r.rm180||[]).map(i=>'<div class="rm-item">'+i+'</div>').join('')+'</div></div>';
+window._rd={r,d};goTo(8);}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function copyEmail(){const r=window._rd?.r,d=window._rd?.d;if(!r)return;navigator.clipboard.writeText('Subject: '+d.co_name+' — Portfolio Sales Excellence Assessment\n\n'+(r.email_body||r.exec_summary)).then(()=>toast('Copied to clipboard'));}
+function copySlack(){const r=window._rd?.r;if(!r)return;navigator.clipboard.writeText(r.slack_msg||r.exec_summary).then(()=>toast('Slack message copied'));}
+ud();
 </script>
 </body>
 </html>
